@@ -1,0 +1,54 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "disable_ai": true,
+  "hard_tabs": true,
+  "toolbar": {
+    "agent_review": false,
+    "selections_menu": false,
+    "quick_actions": false,
+    "breadcrumbs": false
+  },
+  "scrollbar": {
+    "axes": {
+      "vertical": false,
+      "horizontal": false
+    },
+    "selected_symbol": false,
+    "selected_text": false,
+    "search_results": false,
+    "git_diff": false,
+    "show": "never",
+    "cursors": false
+  },
+  "inline_code_actions": false,
+  "relative_line_numbers": "wrapped",
+  "gutter": {
+    "folds": false,
+    "breakpoints": false,
+    "runnables": false,
+    "line_numbers": true
+  },
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1000
+    }
+  },
+  "ui_font_family": "JetBrains Mono",
+  "buffer_font_family": "Fira Code",
+  "vim_mode": false,
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "icon_theme": "Catppuccin Mocha",
+  "ui_font_size": 18.0,
+  "buffer_font_size": 18.0,
+  "theme": "Catppuccin Mocha"
+}
