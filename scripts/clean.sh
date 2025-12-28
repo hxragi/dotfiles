@@ -37,13 +37,13 @@ print_error() {
 
 get_size() {
     local path="$1"
+    local size
     if [[ -d "$path" ]]; then
-        du -sb "$path" 2>/dev/null | cut -f1 || echo 0
+        size=$(du -sb "$path" 2>/dev/null | awk '{print $1}')
     elif [[ -f "$path" ]]; then
-        stat -c%s "$path" 2>/dev/null || echo 0
-    else
-        echo 0
+        size=$(stat -c%s "$path" 2>/dev/null)
     fi
+    echo "${size:-0}"
 }
 
 human_readable() {
@@ -52,6 +52,9 @@ human_readable() {
 
 add_freed() {
     local amount=$1
+    if [[ -z "$amount" ]] || [[ ! "$amount" =~ ^-?[0-9]+$ ]]; then
+        return
+    fi
     if (( amount > 0 )); then
         FREED_SPACE=$((FREED_SPACE + amount))
         echo -e "   ${GREEN}+$(human_readable $amount)${NC}"
@@ -96,19 +99,19 @@ cleanup_pacman() {
     fi
     
     print_step "Агрессивная очистка кэша pacman (оставляем только 1 версию)..."
-    local cache_before
+    local cache_before cache_after freed_amount
     cache_before=$(get_size /var/cache/pacman/pkg)
     
     if command -v paccache &> /dev/null; then
-        sudo paccache -rk1 -q
-        sudo paccache -ruk0 -q
+        sudo paccache -rk1 -q 2>/dev/null || sudo paccache -rk1
+        sudo paccache -ruk0 -q 2>/dev/null || sudo paccache -ruk0
     else
         sudo pacman -Scc --noconfirm
     fi
     
-    local cache_after
     cache_after=$(get_size /var/cache/pacman/pkg)
-    add_freed $((cache_before - cache_after))
+    freed_amount=$((cache_before - cache_after))
+    [[ $freed_amount -gt 0 ]] && add_freed $freed_amount
     
     print_step "Полная очистка кэша paru..."
     if [[ -d "$HOME/.cache/paru" ]]; then
@@ -862,18 +865,21 @@ cleanup_system() {
     print_header "SYSTEM [AGGRESSIVE]"
     
     print_step "Агрессивная очистка журналов (оставляем 3 дня)..."
-    local journal_before
-    journal_before=$(sudo du -sb /var/log/journal 2>/dev/null | cut -f1 || echo 0)
-    sudo journalctl --vacuum-time=3d --quiet
-    sudo journalctl --vacuum-size=100M --quiet
-    local journal_after
-    journal_after=$(sudo du -sb /var/log/journal 2>/dev/null | cut -f1 || echo 0)
-    add_freed $((journal_before - journal_after))
+    local journal_before journal_after freed_amount
+    journal_before=$(sudo du -sb /var/log/journal 2>/dev/null | awk '{print $1}')
+    journal_before=${journal_before:-0}
+    sudo journalctl --vacuum-time=3d --quiet 2>/dev/null || sudo journalctl --vacuum-time=3d
+    sudo journalctl --vacuum-size=100M --quiet 2>/dev/null || sudo journalctl --vacuum-size=100M
+    journal_after=$(sudo du -sb /var/log/journal 2>/dev/null | awk '{print $1}')
+    journal_after=${journal_after:-0}
+    freed_amount=$((journal_before - journal_after))
+    [[ $freed_amount -gt 0 ]] && add_freed $freed_amount
     
     print_step "Удаление всех coredumps..."
     if [[ -d "/var/lib/systemd/coredump" ]]; then
         local coredump_size
-        coredump_size=$(sudo du -sb /var/lib/systemd/coredump 2>/dev/null | cut -f1 || echo 0)
+        coredump_size=$(sudo du -sb /var/lib/systemd/coredump 2>/dev/null | awk '{print $1}')
+        coredump_size=${coredump_size:-0}
         sudo rm -rf /var/lib/systemd/coredump/*
         add_freed $coredump_size
     fi
@@ -893,7 +899,7 @@ cleanup_system() {
     fi
     
     print_step "Агрессивная очистка ~/.cache..."
-    local cache_before
+    local cache_before cache_after freed_amount
     cache_before=$(get_size "$HOME/.cache")
     
     local keep_caches=("paru")
@@ -915,9 +921,9 @@ cleanup_system() {
         fi
     done
     
-    local cache_after
     cache_after=$(get_size "$HOME/.cache")
-    add_freed $((cache_before - cache_after))
+    freed_amount=$((cache_before - cache_after))
+    [[ $freed_amount -gt 0 ]] && add_freed $freed_amount
     
     print_step "Очистка корзины..."
     if [[ -d "$HOME/.local/share/Trash" ]]; then
@@ -1030,7 +1036,8 @@ disk_report() {
     
     if [[ -d "/var/lib/docker" ]]; then
         local size
-        size=$(sudo du -sb /var/lib/docker 2>/dev/null | cut -f1 || echo 0)
+        size=$(sudo du -sb /var/lib/docker 2>/dev/null | awk '{print $1}')
+        size=${size:-0}
         echo "   /var/lib/docker: $(human_readable $size)"
     fi
     
