@@ -1,0 +1,10 @@
+[user]
+	email = mixintrace@gmail.com
+	name = hxragi
+[core]
+	pager = cat
+[alias]
+	co = checkout
+	st = status
+	br = branch
+	cm = commit -m

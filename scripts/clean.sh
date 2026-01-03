@@ -11,12 +11,12 @@ MAGENTA='\033[0;35m'
 NC='\033[0m'
 
 FREED_SPACE=0
-SCRIPT_VERSION="2.0.0"
+SCRIPT_VERSION="2.1.0"
 
 print_header() {
-    echo -e "\n${BLUE}╔════════════════════════════════════════════════════════╗${NC}"
+    echo -e "\n${BLUE}╔═══════════════════════════════════════════════════════╗${NC}"
     echo -e "${BLUE}  $1${NC}"
-    echo -e "${BLUE}╚════════════════════════════════════════════════════════╝${NC}"
+    echo -e "${BLUE}╚═══════════════════════════════════════════════════════╝${NC}"
 }
 
 print_step() {
@@ -70,6 +70,247 @@ safe_rm() {
         }
     fi
     return 0
+}
+
+cleanup_temp_files() {
+    print_header "TEMPORARY FILES [AUTO]"
+    
+    print_step "Очистка временных файлов bash..."
+    local bash_temps=(
+        "$HOME/.bash_history-*.tmp"
+    )
+    
+    for pattern in "${bash_temps[@]}"; do
+        for file in $pattern 2>/dev/null; do
+            if [[ -f "$file" ]]; then
+                local size
+                size=$(get_size "$file")
+                safe_rm "$file"
+                echo "   Удалено: $file"
+                add_freed $size
+            fi
+        done
+    done
+    
+    print_step "Очистка Discord временных файлов..."
+    local discord_temp_dirs=(
+        "$HOME/.config/discord/Cache"
+        "$HOME/.config/discord/Code Cache"
+        "$HOME/.config/discord/GPUCache"
+        "$HOME/.config/discord/Service Worker/CacheStorage"
+        "$HOME/.config/discord/Service Worker/ScriptCache"
+        "$HOME/.config/discord/VideoDecodeStats"
+    )
+    
+    for dir in "${discord_temp_dirs[@]}"; do
+        if [[ -d "$dir" ]]; then
+            local size
+            size=$(get_size "$dir")
+            safe_rm "$dir"
+            echo "   Очищено: $dir"
+            add_freed $size
+        fi
+    done
+    
+    find "$HOME/.config/discord" -name "*.log" -delete 2>/dev/null || true
+    find "$HOME/.config/discord" -name "*.tmp" -delete 2>/dev/null || true
+    
+    print_step "Очистка Brave кэшей..."
+    local brave_cache_dirs=(
+        "$HOME/.config/BraveSoftware/Brave/Default/Cache"
+        "$HOME/.config/BraveSoftware/Brave/Default/Code Cache"
+        "$HOME/.config/BraveSoftware/Brave/Default/GPUCache"
+        "$HOME/.config/BraveSoftware/Brave/Default/Service Worker/CacheStorage"
+        "$HOME/.config/BraveSoftware/Brave/Default/Service Worker/ScriptCache"
+        "$HOME/.config/BraveSoftware/Brave/ShaderCache"
+    )
+    
+    for dir in "${brave_cache_dirs[@]}"; do
+        if [[ -d "$dir" ]]; then
+            local size
+            size=$(get_size "$dir")
+            safe_rm "$dir"/*
+            echo "   Очищено: $dir"
+            add_freed $size
+        fi
+    done
+    
+    print_step "Очистка Waterfox кэшей..."
+    if [[ -d "$HOME/.waterfox" ]]; then
+        find "$HOME/.waterfox" -type d -name "cache2" -exec rm -rf {} + 2>/dev/null || true
+        find "$HOME/.waterfox" -type d -name "startupCache" -exec rm -rf {} + 2>/dev/null || true
+        find "$HOME/.waterfox" -type d -name "OfflineCache" -exec rm -rf {} + 2>/dev/null || true
+        find "$HOME/.waterfox" -name "*.log" -delete 2>/dev/null || true
+    fi
+    
+    print_step "Очистка Mozilla кэшей..."
+    if [[ -d "$HOME/.mozilla" ]]; then
+        find "$HOME/.mozilla" -type d -name "cache2" -exec rm -rf {} + 2>/dev/null || true
+        find "$HOME/.mozilla" -type d -name "startupCache" -exec rm -rf {} + 2>/dev/null || true
+        find "$HOME/.mozilla" -name "*.log" -delete 2>/dev/null || true
+    fi
+    
+    print_step "Очистка Equicord временных файлов..."
+    if [[ -d "$HOME/.config/Equicord" ]]; then
+        local equicord_dirs=(
+            "$HOME/.config/Equicord/Cache"
+            "$HOME/.config/Equicord/Code Cache"
+            "$HOME/.config/Equicord/GPUCache"
+            "$HOME/.config/Equicord/Service Worker"
+        )
+        
+        for dir in "${equicord_dirs[@]}"; do
+            if [[ -d "$dir" ]]; then
+                local size
+                size=$(get_size "$dir")
+                safe_rm "$dir"
+                add_freed $size
+            fi
+        done
+    fi
+    
+    print_step "Очистка Electron кэшей..."
+    if [[ -d "$HOME/.config/Electron" ]]; then
+        local size
+        size=$(get_size "$HOME/.config/Electron")
+        safe_rm "$HOME/.config/Electron"/*
+        add_freed $size
+    fi
+    
+    print_step "Очистка configstore..."
+    if [[ -d "$HOME/.config/configstore" ]]; then
+        find "$HOME/.config/configstore" -name "*.tmp" -delete 2>/dev/null || true
+        find "$HOME/.config/configstore" -name "*.lock" -delete 2>/dev/null || true
+    fi
+    
+    print_step "Очистка dconf временных файлов..."
+    if [[ -d "$HOME/.config/dconf" ]]; then
+        find "$HOME/.config/dconf" -name "*.tmp" -delete 2>/dev/null || true
+    fi
+    
+    print_step "Очистка exercism кэша..."
+    if [[ -d "$HOME/.config/exercism" ]]; then
+        find "$HOME/.config/exercism" -name "*.log" -delete 2>/dev/null || true
+        find "$HOME/.config/exercism" -name "*.tmp" -delete 2>/dev/null || true
+    fi
+    
+    print_step "Очистка systemd временных файлов..."
+    if [[ -d "$HOME/.config/systemd/user" ]]; then
+        find "$HOME/.config/systemd/user" -name "*.tmp" -delete 2>/dev/null || true
+    fi
+    
+    print_step "Очистка AyuGram временных файлов..."
+    if [[ -d "$HOME/.local/share/AyuGramDesktop" ]]; then
+        local ayugram_dirs=(
+            "$HOME/.local/share/AyuGramDesktop/tdata/user_data/cache"
+            "$HOME/.local/share/AyuGramDesktop/tdata/emoji"
+        )
+        
+        for dir in "${ayugram_dirs[@]}"; do
+            if [[ -d "$dir" ]]; then
+                local size
+                size=$(get_size "$dir")
+                safe_rm "$dir"/*
+                add_freed $size
+            fi
+        done
+        
+        find "$HOME/.local/share/AyuGramDesktop" -name "*.log" -delete 2>/dev/null || true
+    fi
+    
+    print_step "Очистка PrismLauncher кэшей..."
+    if [[ -d "$HOME/.local/share/PrismLauncher" ]]; then
+        local prism_cache="$HOME/.local/share/PrismLauncher/cache"
+        if [[ -d "$prism_cache" ]]; then
+            local size
+            size=$(get_size "$prism_cache")
+            safe_rm "$prism_cache"/*
+            add_freed $size
+        fi
+        
+        find "$HOME/.local/share/PrismLauncher" -name "*.log" -delete 2>/dev/null || true
+        find "$HOME/.local/share/PrismLauncher/instances" -type d -name "logs" -exec rm -rf {} + 2>/dev/null || true
+    fi
+    
+    print_step "Очистка gvfs-metadata..."
+    if [[ -d "$HOME/.local/share/gvfs-metadata" ]]; then
+        local size
+        size=$(get_size "$HOME/.local/share/gvfs-metadata")
+        find "$HOME/.local/share/gvfs-metadata" -type f -name "*.log" -delete 2>/dev/null || true
+        find "$HOME/.local/share/gvfs-metadata" -type f -size +10M -delete 2>/dev/null || true
+    fi
+    
+    print_step "Очистка recently-used.xbel..."
+    if [[ -f "$HOME/.local/share/recently-used.xbel" ]]; then
+        local size
+        size=$(get_size "$HOME/.local/share/recently-used.xbel")
+        if (( size > 1048576 )); then
+            echo "   Размер: $(human_readable $size)"
+            > "$HOME/.local/share/recently-used.xbel"
+            add_freed $size
+        fi
+    fi
+    
+    print_step "Очистка nautilus временных файлов..."
+    if [[ -d "$HOME/.local/share/nautilus" ]]; then
+        find "$HOME/.local/share/nautilus" -name "*.tmp" -delete 2>/dev/null || true
+    fi
+    
+    print_step "Очистка старых Download файлов (>30 дней)..."
+    if [[ -d "$HOME/Downloads" ]]; then
+        local old_count
+        old_count=$(find "$HOME/Downloads" -type f -mtime +30 2>/dev/null | wc -l)
+        if (( old_count > 0 )); then
+            echo "   Найдено старых файлов: $old_count"
+            read -p "   Удалить файлы старше 30 дней? [y/N] " -n 1 -r
+            echo
+            if [[ $REPLY =~ ^[Yy]$ ]]; then
+                find "$HOME/Downloads" -type f -mtime +30 -delete 2>/dev/null || true
+            fi
+        else
+            echo "   Нет старых файлов"
+        fi
+    fi
+    
+    print_step "Очистка .cache (общая)..."
+    local cache_items=(
+        "$HOME/.cache/thumbnails"
+        "$HOME/.cache/mesa_shader_cache"
+        "$HOME/.cache/fontconfig"
+        "$HOME/.cache/gstreamer-1.0"
+        "$HOME/.cache/evolution"
+    )
+    
+    for item in "${cache_items[@]}"; do
+        if [[ -d "$item" ]]; then
+            local size
+            size=$(get_size "$item")
+            safe_rm "$item"/*
+            echo "   Очищено: $item"
+            add_freed $size
+        fi
+    done
+    
+    print_step "Поиск больших временных файлов..."
+    local big_files
+    big_files=$(find "$HOME/.cache" -type f -size +100M 2>/dev/null || true)
+    if [[ -n "$big_files" ]]; then
+        echo "$big_files" | while read -r file; do
+            local size
+            size=$(get_size "$file")
+            echo "   Найден: $file ($(human_readable $size))"
+        done
+        read -p "   Удалить большие временные файлы (>100MB)? [y/N] " -n 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            echo "$big_files" | while read -r file; do
+                local size
+                size=$(get_size "$file")
+                safe_rm "$file"
+                add_freed $size
+            done
+        fi
+    fi
 }
 
 cleanup_pacman() {
@@ -286,6 +527,12 @@ cleanup_java() {
             add_freed $size
         fi
     done
+    
+    print_step "Очистка .jdks кэшей..."
+    if [[ -d "$HOME/.jdks" ]]; then
+        find "$HOME/.jdks" -name "*.log" -delete 2>/dev/null || true
+        find "$HOME/.jdks" -name "*.tmp" -delete 2>/dev/null || true
+    fi
 }
 
 cleanup_intellij() {
@@ -464,6 +711,12 @@ cleanup_bun() {
         done < <(find "$HOME" -maxdepth 6 -type d -name "$build_name" \
             -not -path "*/\.*" -print0 2>/dev/null | head -z -50)
     done
+    
+    print_step "Очистка astro временных файлов..."
+    if [[ -d "$HOME/.config/astro" ]]; then
+        find "$HOME/.config/astro" -name "*.log" -delete 2>/dev/null || true
+        find "$HOME/.config/astro" -name "*.tmp" -delete 2>/dev/null || true
+    fi
 }
 
 cleanup_neovim() {
@@ -982,6 +1235,7 @@ nuclear_clean() {
     echo -e "${MAGENTA}ЗАПУСК ЯДЕРНОЙ ОЧИСТКИ...${NC}"
     echo ""
     
+    cleanup_temp_files
     cleanup_pacman
     cleanup_rust
     cleanup_java
@@ -1056,6 +1310,7 @@ show_help() {
     echo "  -a, --all         Полная агрессивная очистка"
     echo "  -n, --nuclear     Ядерная очистка (всё без вопросов)"
     echo "  -r, --report      Отчёт о диске (ничего не удаляет)"
+    echo "  --temp            Только временные файлы"
     echo "  --pacman          Только pacman/paru"
     echo "  --rust            Только Rust/Cargo"
     echo "  --java            Только Java/Maven/Gradle"
@@ -1070,6 +1325,7 @@ show_help() {
     echo "Примеры:"
     echo "  $0                # Интерактивный режим"
     echo "  $0 --all          # Полная очистка"
+    echo "  $0 --temp         # Только временные файлы"
     echo "  $0 --rust --java  # Только Rust и Java"
     echo "  $0 --report       # Только отчёт"
 }
@@ -1082,6 +1338,7 @@ main() {
         echo "║                                                       ║"
         echo "║  pacman/paru + Rust + Java + Bun + Neovim + VS Code  ║"
         echo "║            + Zed + IntelliJ IDEA + Docker            ║"
+        echo "║                   + TEMP FILES                        ║"
         echo "║                                                       ║"
         echo "║                   v${SCRIPT_VERSION}                           ║"
         echo "╚═══════════════════════════════════════════════════════╝"
@@ -1092,18 +1349,19 @@ main() {
         echo -e "  ${GREEN}1)${NC} Полная агрессивная очистка (всё по очереди)"
         echo -e "  ${RED}2)${NC} ☢ ЯДЕРНАЯ ОЧИСТКА (удалить ВСЁ без вопросов)"
         echo ""
-        echo "  3) Pacman / Paru"
-        echo "  4) Rust / Cargo"
-        echo "  5) Java (Maven/Gradle)"
-        echo "  6) IntelliJ IDEA"
-        echo "  7) Bun / NPM / Node"
-        echo "  8) Neovim"
-        echo "  9) VS Code"
-        echo "  10) Zed"
-        echo "  11) Docker"
-        echo "  12) Система"
+        echo "  3) Временные файлы"
+        echo "  4) Pacman / Paru"
+        echo "  5) Rust / Cargo"
+        echo "  6) Java (Maven/Gradle)"
+        echo "  7) IntelliJ IDEA"
+        echo "  8) Bun / NPM / Node"
+        echo "  9) Neovim"
+        echo "  10) VS Code"
+        echo "  11) Zed"
+        echo "  12) Docker"
+        echo "  13) Система"
         echo ""
-        echo "  13) Отчёт о диске (ничего не удаляет)"
+        echo "  14) Отчёт о диске (ничего не удаляет)"
         echo "  0) Выход"
         echo ""
         read -p "Выбор [1]: " choice
@@ -1111,6 +1369,7 @@ main() {
         
         case $choice in
             1)
+                cleanup_temp_files
                 cleanup_pacman
                 cleanup_rust
                 cleanup_java
@@ -1123,17 +1382,18 @@ main() {
                 cleanup_system
                 ;;
             2) nuclear_clean ;;
-            3) cleanup_pacman ;;
-            4) cleanup_rust ;;
-            5) cleanup_java ;;
-            6) cleanup_intellij ;;
-            7) cleanup_bun ;;
-            8) cleanup_neovim ;;
-            9) cleanup_vscode ;;
-            10) cleanup_zed ;;
-            11) cleanup_docker ;;
-            12) cleanup_system ;;
-            13) disk_report; exit 0 ;;
+            3) cleanup_temp_files ;;
+            4) cleanup_pacman ;;
+            5) cleanup_rust ;;
+            6) cleanup_java ;;
+            7) cleanup_intellij ;;
+            8) cleanup_bun ;;
+            9) cleanup_neovim ;;
+            10) cleanup_vscode ;;
+            11) cleanup_zed ;;
+            12) cleanup_docker ;;
+            13) cleanup_system ;;
+            14) disk_report; exit 0 ;;
             0) exit 0 ;;
             *) print_error "Неверный выбор"; exit 1 ;;
         esac
@@ -1149,6 +1409,7 @@ main() {
                     exit 0
                     ;;
                 -a|--all)
+                    cleanup_temp_files
                     cleanup_pacman
                     cleanup_rust
                     cleanup_java
@@ -1169,6 +1430,7 @@ main() {
                     disk_report
                     exit 0
                     ;;
+                --temp) cleanup_temp_files; shift ;;
                 --pacman) cleanup_pacman; shift ;;
                 --rust) cleanup_rust; shift ;;
                 --java) cleanup_java; shift ;;
@@ -1189,9 +1451,9 @@ main() {
     fi
     
     print_header "ИТОГО"
-    echo -e "${GREEN}═════════════════════════════════════════════════════${NC}"
+    echo -e "${GREEN}═══════════════════════════════════════════════════════${NC}"
     echo -e "${GREEN}   ОСВОБОЖДЕНО: $(human_readable $FREED_SPACE)${NC}"
-    echo -e "${GREEN}═════════════════════════════════════════════════════${NC}"
+    echo -e "${GREEN}═══════════════════════════════════════════════════════${NC}"
     echo ""
     echo "Использование диска:"
     df -h / | tail -1
