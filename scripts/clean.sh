@@ -81,7 +81,9 @@ cleanup_temp_files() {
     )
     
     for pattern in "${bash_temps[@]}"; do
-        for file in $pattern 2>/dev/null; do
+        # Use nullglob to handle cases where pattern doesn't match
+        shopt -s nullglob
+        for file in $pattern; do
             if [[ -f "$file" ]]; then
                 local size
                 size=$(get_size "$file")
@@ -90,6 +92,7 @@ cleanup_temp_files() {
                 add_freed $size
             fi
         done
+        shopt -u nullglob
     done
     
     print_step "Очистка Discord временных файлов..."
@@ -114,7 +117,7 @@ cleanup_temp_files() {
     
     find "$HOME/.config/discord" -name "*.log" -delete 2>/dev/null || true
     find "$HOME/.config/discord" -name "*.tmp" -delete 2>/dev/null || true
-    
+
     print_step "Очистка Brave кэшей..."
     local brave_cache_dirs=(
         "$HOME/.config/BraveSoftware/Brave/Default/Cache"

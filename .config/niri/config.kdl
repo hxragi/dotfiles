@@ -1,11 +1,3 @@
-// This config is in the KDL format: https://kdl.dev
-// "/-" comments out the following node.
-// Check the wiki for a full description of the configuration:
-// https://yalter.github.io/niri/Configuration:-Introduction
-
-// Input device configuration.
-// Find the full list of options on the wiki:
-// https://yalter.github.io/niri/Configuration:-Input
 input {
     keyboard {
         xkb {
@@ -34,7 +26,7 @@ input {
     // All commented-out settings here are examples, not defaults.
     touchpad {
         // off
-        tap
+        // tap
         // dwt
         // dwtp
         // drag false
@@ -43,7 +35,7 @@ input {
         // accel-speed 0.2
         accel-profile "flat"
         scroll-method "two-finger"
-        // disabled-on-external-mouse
+        disabled-on-external-mouse
     }
 
     mouse {
@@ -52,7 +44,7 @@ input {
         // accel-speed 0.2
         accel-profile "flat"
         // scroll-method "no-scroll"
-	middle-emulation
+      	middle-emulation
     }
 
     trackpoint {
@@ -80,7 +72,7 @@ input {
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
-/-output "eDP-1" {
+//-output "eDP-1" {
     // Uncomment this line to disable this output.
     // off
 
@@ -90,14 +82,14 @@ input {
     // for the resolution.
     // If the mode is omitted altogether or is invalid, niri will pick one automatically.
     // Run `niri msg outputs` while inside a niri instance to list all outputs and their modes.
-    mode "1920x1080@144"
+//    mode "1920x1080@144"
 
     // You can use integer or fractional scale, for example use 1.5 for 150% scale.
-    scale 1.25
+//    scale 1.15
 
     // Transform allows to rotate the output counter-clockwise, valid values are:
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
-    transform "normal"
+//    transform "normal"
 
     // Position of the output in the global coordinate space.
     // This affects directional monitor actions like "focus-monitor-left", and cursor movement.
@@ -108,9 +100,25 @@ input {
     // so to put another output directly adjacent to it on the right, set its x to 1920.
     // If the position is unset or results in an overlap, the output is instead placed
     // automatically.
-    background-color "#303446"
+//    background-color "#303446"
 
-    position x=1280 y=0
+  //  position x=0 y=0
+//}
+
+output "HDMI-A-2" {
+    mode "1920x1080@180.0"
+//    mode "1920x1080@144.106"
+    position x=0 y=0
+    scale 1
+    transform "normal"
+    focus-at-startup
+}
+
+output "eDP-1" {
+    mode "1920x1080@144.149"
+    position x=-1920 y=0
+    scale 1
+    transform "normal"
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -280,11 +288,11 @@ spawn-at-startup "xwayland-satellite"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
-spawn-sh-at-startup "swaybg -i $HOME/.dotfiles/.config/niri/wallpapers/macos-monterey-stock-black-dark-mode-layers-5k-3840x2160-5889.jpg"
+spawn-sh-at-startup "swaybg -i $HOME/.dotfiles/.config/niri/wallpapers/gorod.png"
 
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
-    // skip-at-startup
+    skip-at-startup
 }
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -308,6 +316,7 @@ screenshot-path null
 animations {
     // Uncomment to turn off all animations.
     // off
+    off
 
     // Slow down all animations by this factor. Values below 1 speed them up instead.
     // slowdown 3.0
@@ -356,6 +365,10 @@ window-rule {
 /-window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
+}
+
+window-rule {
+    open-maximized true
 }
 
 binds {

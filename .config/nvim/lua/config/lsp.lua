@@ -48,7 +48,7 @@ vim.lsp.config("*", {
   root_markers = { ".git" },
 })
 
-vim.lsp.enable({ "jdtls", "luals", "rust"})
+vim.lsp.enable({ "lua_ls", "jdtls", "basedpyright", "rust"})
 -- Enable each language server by filename under the lsp/ folder
 vim.keymap.del('n', 'gra')
 vim.keymap.del('n', 'gri')

@@ -6,7 +6,7 @@
         "modules-right": ["battery"],
 
         "clock": {
-            "format": "{:%I:%M:%S %p} ",
+            "format": " {:%I:%M:%S %p} ",
             "interval": 1,   
             "tooltip-format": "<tt>{calendar}</tt>",
             "calendar": {
@@ -27,9 +27,9 @@
                 "warning": 30,
                 "critical": 20
             },
-            "format": "{capacity}% {icon}",
-            "format-charging": "{capacity}% 󰂄",
-            "format-plugged": "{capacity}% 󰂄 ",
+            "format": "14{capacity}% {icon}",
+            "format-charging": "14{capacity}% 󰂄",
+            "format-plugged": "14{capacity}% 󰂄 ",
             "format-alt": "{time} {icon}",
             "format-icons": [
                 "󰁻",
