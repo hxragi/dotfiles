@@ -1,0 +1,24 @@
+# Геометрия
+width = 100%
+height = 100%
+border-width = 0
+outline-width = 0
+
+# Центрирование контента
+padding-left = 40%
+padding-top = 40%
+result-spacing = 15
+num-results = 7
+
+# Внешний вид
+font = monospace
+font-size = 24
+hint-font = true
+prompt-text = "run: "
+
+# Цвета Catppuccin Mocha
+background-color = #1e1e2eCF
+text-color = #cdd6f4
+prompt-color = #f38ba8
+selection-color = #f9e2af
+selection-background-color = #313244

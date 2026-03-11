@@ -1,31 +1,21 @@
--- =============================================================================
--- Leader Key (must be set first)
--- =============================================================================
 vim.g.mapleader = " "
 
--- =============================================================================
--- General Options
--- =============================================================================
 local opt = vim.opt
 
--- Files & Backup
 opt.backup = false
 opt.writebackup = false
 opt.swapfile = false
-opt.updatetime = 700
+opt.updatetime = 200
 
--- Indentation
 opt.tabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true
 
--- Search
 opt.hlsearch = true
 opt.incsearch = true
 opt.ignorecase = true
 opt.smartcase = true
 
--- UI
 opt.number = true
 opt.signcolumn = "yes"
 opt.showcmd = true
@@ -38,50 +28,43 @@ opt.listchars = "tab:»·,trail:·,nbsp:·"
 opt.mouse = ""
 opt.mousescroll = "ver:0,hor:0"
 
--- Disabled Providers
+opt.clipboard = "unnamedplus"
+opt.splitright = true
+opt.splitbelow = true
+opt.cursorline = true
+opt.scrolloff = 8
+opt.sidescrolloff = 8
+opt.wrap = false
+opt.confirm = true
+opt.completeopt = "menu,menuone,noinsert"
+
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_node_provider = 0
 
--- Diagnostics & LSP
 vim.diagnostic.config({ virtual_text = true })
 vim.lsp.log.set_level("warn")
 
--- =============================================================================
--- Plugins
--- =============================================================================
 vim.pack.add({
-  -- Theme & UI
   { src = "https://github.com/catppuccin/nvim.git" },
   { src = "https://github.com/akinsho/bufferline.nvim.git" },
   { src = "https://github.com/nvim-lualine/lualine.nvim.git" },
   { src = "https://github.com/nvim-tree/nvim-web-devicons.git" },
-
-  -- File Explorer
-  { src = "https://github.com/nvim-neo-tree/neo-tree.nvim.git" },
+  { src = "https://github.com/nvim-neo-tree/neo-tree.nvim.git", cmd = "Neotree" },
   { src = "https://github.com/MunifTanjim/nui.nvim.git" },
-
-  -- Telescope
-  { src = "https://github.com/nvim-telescope/telescope.nvim.git" },
+  { src = "https://github.com/nvim-telescope/telescope.nvim.git", cmd = "Telescope" },
   { src = "https://github.com/nvim-lua/plenary.nvim" },
-
-  -- Treesitter
   { src = "https://github.com/nvim-treesitter/nvim-treesitter.git" },
   { src = "https://github.com/nvim-treesitter/nvim-treesitter-context.git" },
-
-  -- Completion
   { src = "https://github.com/saghen/blink.cmp" },
   { src = "https://github.com/rafamadriz/friendly-snippets" },
-
-  -- Utilities
   { src = "https://github.com/folke/which-key.nvim.git" },
   { src = "https://github.com/nvim-mini/mini.pairs" },
   { src = "https://github.com/vyfor/cord.nvim" },
   { src = "https://github.com/MeanderingProgrammer/render-markdown.nvim.git" }
 })
 
--- =============================================================================
--- Plugin Configurations
--- =============================================================================
+vim.loader.enable()
+
 local telescope = require("telescope")
 local builtin = require("telescope.builtin")
 
@@ -101,8 +84,8 @@ telescope.setup({
     borderchars = { "", "", "", "", "", "", "", "" },
     path_displays = { "smart" },
     layout_config = {
-      height = 100,
-      width = 400,
+      height = 0.9,
+      width = 0.85,
       prompt_position = "top",
       preview_cutoff = 40,
     },
@@ -215,7 +198,6 @@ require("bufferline").setup({
 })
 
 require('mini.pairs').setup({
-  -- Default config from the README
   modes = { insert = true, command = false, terminal = false },
   mappings = {
     ['('] = { action = 'open', pair = '()', neigh_pattern = '[^\\].' },
@@ -232,7 +214,33 @@ require('mini.pairs').setup({
   },
 })
 
-vim.lsp.enable({ "basedpyright", "ruff", "jdtls", "rust_analyzer", "lua_ls", "gopls" })
+require("nvim-treesitter").setup({
+  ensure_installed = {
+    "lua",
+    "python",
+    "rust",
+    "java",
+    "json",
+    "bash",
+    "markdown"
+  },
+  highlight = { enable = true },
+  indent = { enable = true }
+})
+
+require("treesitter-context").setup({
+  max_lines = 0,
+  min_window_height = 1,
+  line_numbers = true,
+  multiline_threshold = 1,
+  trim_scope = "outer",
+  mode = "topline",
+  zindex = 20,
+})
+
+require("which-key").setup()
+
+vim.lsp.enable({ "basedpyright", "ruff", "jdtls", "rust_analyzer", "lua_ls" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
   desc = "LSP actions",
@@ -246,7 +254,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "<Leader>gr", vim.lsp.buf.references, o)
     map("n", "<Leader>gs", vim.lsp.buf.signature_help, o)
     map("n", "<Leader>gc", vim.lsp.buf.rename, o)
-    map({ "n", "x" }, "<F3>", function() vim.lsp.buf.format({ async = true }) end, o)
+    map({ "n", "x" }, "<F3>", function() vim.lsp.buf.format({ 
+      async = false,
+      filter = function(client)
+        return client.name ~= "ruff"
+      end
+    }) end, o)
     map("n", "<F4>", vim.lsp.buf.code_action, o)
     -- Explicit hover mapping
     map("n", "K", vim.lsp.buf.hover, o)
@@ -261,61 +274,31 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   desc = "Format Go files on save with gopls",
 })
 
--- =============================================================================
--- Autocommands
--- =============================================================================
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "python", "rust", "lua", "java" },
-  callback = function()
-    require("treesitter-context").setup({
-      enable = true,
-      max_lines = 0,
-      min_window_height = 1,
-      line_numbers = true,
-      multiline_threshold = 1,
-      trim_scope = "outer",
-      mode = "topline",
-      zindex = 20,
-    })
-  end,
-})
+-- vim.defer_fn(function()  if vim.fn.exists(":Cord") == 2 then vim.cmd("Cord update") end end, 1000)
 
-vim.defer_fn(function()
-  if vim.fn.exists(":Cord") == 2 then
-    vim.cmd("Cord update")
-  end
-end, 1000)
-
--- =============================================================================
--- Keymaps
--- =============================================================================
 local map = vim.keymap.set
 
--- Clipboard
 map({ "n", "x" }, "<leader>y", '"+y', { desc = "Yank to clipboard" })
 map({ "n", "x" }, "<leader>d", '"+d', { desc = "Delete to clipboard" })
 
--- Buffers
 map("n", "<leader><Left>", "<cmd>bp<cr>", { desc = "Previous buffer" })
 map("n", "<leader><Right>", "<cmd>bn<cr>", { desc = "Next buffer" })
 map("n", "<leader>bdd", "<cmd>%bd|edit#|bd#<cr>", { desc = "Close all buffers" })
 
--- File Operations
 map("n", "<leader>w", "<cmd>update<cr>", { desc = "Save" })
 map("n", "<leader>q", "<cmd>quit<cr>", { desc = "Quit" })
 map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "File explorer" })
 
--- Telescope
 map("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
 map("n", "<leader>fg", builtin.live_grep, { desc = "Live grep" })
 map("n", "<leader>fb", builtin.buffers, { desc = "Buffers" })
 map("n", "<leader>fx", builtin.diagnostics, { desc = "Diagnostics" })
 
--- Disable F1 help
 map({ "n", "v", "i" }, "<F1>", "<Nop>")
 
--- =============================================================================
--- Colorscheme & Highlights
--- =============================================================================
+map("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end)
+map("n", "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end)
+map("n", "<leader>xx", vim.diagnostic.open_float)
+
 vim.cmd.colorscheme("catppuccin-mocha")
 vim.api.nvim_set_hl(0, "@lsp.type.number", { italic = true })
