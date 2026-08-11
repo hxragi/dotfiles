@@ -1,0 +1,7 @@
+keys:
+  - &shinoa age1pas4pu4yz8m4m693zk5lnjvxzchg4cprah4tydq69jjvfszcufpq4g9lgk
+creation_rules:
+  - path_regex: secrets/.*\.yaml$
+    key_groups:
+      - age:
+          - *shinoa

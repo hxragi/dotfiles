@@ -1,0 +1,8 @@
+name: Format Check
+description: Checks Nix files against alejandra formatting
+
+runs:
+  using: composite
+  steps:
+    - run: nix run nixpkgs#alejandra -- --check .
+      shell: bash

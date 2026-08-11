@@ -1,0 +1,222 @@
+@define-color base     #1e1e2e;
+@define-color mantle    #181825;
+@define-color crust     #11111b;
+@define-color text      #cdd6f4;
+@define-color subtext0  #a6adc8;
+@define-color subtext1  #bac2de;
+@define-color surface0  #313244;
+@define-color surface1  #45475a;
+@define-color surface2  #585b70;
+@define-color overlay0  #6c7086;
+@define-color lavender  #b4befe;
+@define-color blue      #89b4fa;
+@define-color sapphire  #74c7ec;
+@define-color mauve     #cba6f7;
+@define-color red       #f38ba8;
+@define-color green     #a6e3a1;
+@define-color yellow    #f9e2af;
+@define-color peach     #fab387;
+
+* {
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 16px;
+}
+
+.background {
+  background-color: transparent;
+}
+
+#bar {
+  background-color: @mantle;
+  color: @text;
+  border-bottom: 1px solid @crust;
+}
+
+/* workspaces */
+
+.workspaces {
+  padding: 0 4px;
+}
+
+.workspaces button {
+  color: @subtext0;
+  background-color: transparent;
+  background-image: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 3px;
+  padding: 2px 8px;
+  margin: 2px 3px;
+  min-width: 0;
+}
+
+.workspaces button:hover {
+  background-color: @surface0;
+  color: @text;
+}
+
+.workspaces button:checked,
+.workspaces button.focused {
+  color: @base;
+  background-color: @lavender;
+}
+
+.workspaces button.urgent {
+  color: @base;
+  background-color: @red;
+}
+
+/* clock */
+
+.clock {
+  color: @text;
+  background-color: transparent;
+  background-image: none;
+  border: none;
+  box-shadow: none;
+  padding: 0 10px;
+}
+
+/* popovers, общая оболочка для попапов clock/tray */
+
+popover {
+  background-color: transparent;
+}
+
+popover contents {
+  background-color: @base;
+  color: @text;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px @surface0;
+  padding: 8px;
+}
+
+/* clock popup calendar */
+
+.popup-clock {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.popup-clock .calendar-clock {
+  color: @sapphire;
+}
+
+.popup-clock .calendar {
+  color: @text;
+  background-color: transparent;
+  border: none;
+}
+
+.popup-clock .calendar header {
+  background-color: transparent;
+  color: @lavender;
+}
+
+.popup-clock .calendar header button {
+  color: @text;
+  background-color: transparent;
+  background-image: none;
+  border: none;
+  box-shadow: none;
+}
+
+.popup-clock .calendar header button:hover {
+  background-color: @surface0;
+  border-radius: 4px;
+}
+
+.popup-clock .calendar header label.year {
+  color: @lavender;
+}
+
+.popup-clock .calendar grid label {
+  color: @text;
+  border: none;
+  box-shadow: none;
+  background-image: none;
+  background-color: transparent;
+}
+
+.popup-clock .calendar grid label.day-name {
+  color: @subtext0;
+}
+
+.popup-clock .calendar grid label.week-number {
+  color: @overlay0;
+}
+
+.popup-clock .calendar grid label.day-number.other-month {
+  color: @surface1;
+}
+
+.popup-clock .calendar grid label.day-number.today {
+  color: @peach;
+  font-weight: bold;
+}
+
+.popup-clock .calendar grid label:selected {
+  background-color: @lavender;
+  color: @base;
+  border-radius: 6px;
+}
+
+/* tray */
+
+.tray {
+  padding: 0 8px;
+}
+
+.tray .item {
+  padding: 0 4px;
+  background-color: transparent;
+  background-image: none;
+  border: none;
+  box-shadow: none;
+}
+
+.tray .item image,
+.tray .item icon {
+  background-color: transparent;
+  background-image: none;
+  box-shadow: none;
+}
+
+.tray .item menu,
+.tray .item popover {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.tray .item popover contents,
+.tray .item menu contents,
+.tray .item popover arrow {
+  background-color: @mantle;
+  color: @text;
+  border: 1px solid @surface0;
+  border-radius: 8px;
+}
+
+.tray .item menu > contents {
+  padding: 4px;
+}
+
+.tray .item menuitem,
+.tray .item modelbutton {
+  color: @text;
+  padding: 6px 12px;
+  background: transparent;
+}
+
+.tray .item menuitem:hover,
+.tray .item modelbutton:hover {
+  background-color: @surface0;
+  color: @text;
+  border-radius: 6px;
+}

@@ -1,0 +1,16 @@
+vim.pack.add({
+  'https://github.com/windwp/nvim-autopairs',
+  'https://github.com/Saghen/blink.cmp',
+  'https://github.com/saghen/blink.lib',
+  'https://github.com/catppuccin/nvim',
+  'https://github.com/vyfor/cord.nvim',
+  'https://github.com/neovim/nvim-lspconfig',
+  'https://github.com/nvim-mini/mini.statusline',
+  'https://github.com/nvim-mini/mini.tabline',
+  'https://github.com/folke/noice.nvim',
+  'https://github.com/MunifTanjim/nui.nvim',
+  'https://github.com/nvim-tree/nvim-tree.lua',
+  'https://github.com/nvim-lua/plenary.nvim',
+  'https://github.com/nvim-telescope/telescope.nvim',
+  'https://github.com/nvim-treesitter/nvim-treesitter',
+})
