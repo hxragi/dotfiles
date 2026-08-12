@@ -1,8 +1,0 @@
-name: Flake Check
-description: Validates flake outputs without building derivations
-
-runs:
-  using: composite
-  steps:
-    - run: nix flake check --no-build --all-systems
-      shell: bash
