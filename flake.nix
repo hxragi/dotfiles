@@ -25,10 +25,12 @@
         sops-nix.nixosModules.sops
         home-manager.nixosModules.home-manager
         {
-          home-manager.useGlobalPkgs = true;
-          home-manager.backupFileExtension = "hm-bak";
-          home-manager.extraSpecialArgs = {inherit catppuccin;};
-          home-manager.users.hxragi = import ./home.nix;
+          home-manager = {
+            useGlobalPkgs = true;
+            backupFileExtension = "hm-bak";
+            extraSpecialArgs = {inherit catppuccin;};
+            users.hxragi = import ./home.nix;
+          };
         }
       ];
     };
