@@ -1,11 +1,13 @@
-{ config, lib, pkgs, ... }:
-
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./modules/hardware/bluetooth.nix
-    ];
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ./hardware-configuration.nix
+    ./modules/hardware/bluetooth.nix
+  ];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -14,8 +16,8 @@
   sops.secrets.hxragi-password = {
     neededForUsers = true;
   };
-  
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -27,12 +29,12 @@
   time.timeZone = "Europe/Moscow";
 
   i18n.defaultLocale = "en_US.UTF-8";
-  
+
   users = {
     mutableUsers = false;
     users.hxragi = {
       isNormalUser = true;
-      extraGroups = [ "wheel" ];
+      extraGroups = ["wheel"];
       shell = pkgs.fish;
       hashedPasswordFile = config.sops.secrets.hxragi-password.path;
     };
@@ -43,7 +45,7 @@
   programs.nano.enable = false;
 
   security.rtkit.enable = true;
-  
+
   documentation.enable = false;
   documentation.man.enable = false;
   documentation.doc.enable = false;
@@ -55,35 +57,35 @@
   boot.binfmt.emulatedSystems = lib.mkForce [];
 
   programs.dconf.profiles = lib.mkForce {};
-  
+
   services.gnome.gnome-user-share.enable = false;
-  
+
   services.gvfs.enable = false;
   services.usbmuxd.enable = false;
-  
+
   services.logrotate.enable = false;
-  
+
   services.pcscd.enable = false;
-  
+
   services.udisks2.enable = false;
 
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    
+
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
     ];
-    
+
     config = {
       niri = lib.mkForce {
-        default = [ "gtk" "wlr" ];
+        default = ["gtk" "wlr"];
         "org.freedesktop.impl.portal.Screencast" = "wlr";
         "org.freedesktop.impl.portal.Screenshot" = "wlr";
       };
-      
+
       common = {
-        default = [ "gtk" "wlr" ];
+        default = ["gtk" "wlr"];
       };
     };
   };
@@ -98,7 +100,7 @@
     intel-media-driver
     awww
   ];
-  
+
   environment.gnome.excludePackages = with pkgs; [
     nautilus
   ];
@@ -115,12 +117,12 @@
     enable = true;
     alsa.enable = true;
     pulse.enable = true;
-    
+
     wireplumber.extraConfig."10-fifine-mic" = {
       "monitor.alsa.rules" = [
         {
           matches = [
-            { "device.name" = "alsa_card.usb-3142_Fifine_Microphone-00"; }
+            {"device.name" = "alsa_card.usb-3142_Fifine_Microphone-00";}
           ];
           actions = {
             update-props = {
@@ -161,7 +163,7 @@
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
-  
+
   zramSwap = {
     enable = true;
     memoryPercent = 25;
@@ -176,11 +178,11 @@
 
   powerManagement.cpuFreqGovernor = "schedutil";
 
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = ["nvidia"];
 
   programs.steam = {
     enable = true;
-    extraCompatPackages = [ pkgs.proton-ge-bin ];
+    extraCompatPackages = [pkgs.proton-ge-bin];
   };
 
   system.stateVersion = "26.05";

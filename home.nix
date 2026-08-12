@@ -1,6 +1,10 @@
-{ pkgs, lib, catppuccin, ... }:
 {
-  imports = [ catppuccin.homeModules.catppuccin ];
+  pkgs,
+  lib,
+  catppuccin,
+  ...
+}: {
+  imports = [catppuccin.homeModules.catppuccin];
 
   manual.manpages.enable = false;
 
@@ -152,7 +156,7 @@
         style = "bold green";
         format = "[$symbol]($style)";
         symbol = " ";
-        detect_files = [ "package.json" ".nvmrc" ];
+        detect_files = ["package.json" ".nvmrc"];
       };
 
       python = {
@@ -211,8 +215,8 @@
   systemd.user.services.awww-daemon = {
     Unit = {
       Description = "Awww wallpaper daemon";
-      After = [ "graphical-session.target" ];
-      PartOf = [ "graphical-session.target" ];
+      After = ["graphical-session.target"];
+      PartOf = ["graphical-session.target"];
     };
 
     Service = {
@@ -220,11 +224,11 @@
       ExecStart = "${pkgs.awww}/bin/awww-daemon";
       Restart = "always";
       RestartSec = 5;
-      Environment = [ "PATH=${lib.makeBinPath [ pkgs.awww ]}" ];
+      Environment = ["PATH=${lib.makeBinPath [pkgs.awww]}"];
     };
 
     Install = {
-      WantedBy = [ "default.target" ];
+      WantedBy = ["default.target"];
     };
   };
 

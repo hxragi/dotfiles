@@ -10,7 +10,14 @@
     catppuccin.url = "github:catppuccin/nix";
     sops-nix.url = "github:Mic92/sops-nix";
   };
-  outputs = { self, nixpkgs, home-manager, catppuccin, sops-nix, ... }: {
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    catppuccin,
+    sops-nix,
+    ...
+  }: {
     nixosConfigurations.shinoa = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
@@ -20,7 +27,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.backupFileExtension = "hm-bak";
-          home-manager.extraSpecialArgs = { inherit catppuccin; };
+          home-manager.extraSpecialArgs = {inherit catppuccin;};
           home-manager.users.hxragi = import ./home.nix;
         }
       ];
