@@ -54,7 +54,6 @@
   };
 
   programs = {
-    fish.enable = true;
     niri.enable = true;
     nano.enable = false;
     dconf.profiles = lib.mkForce {};
