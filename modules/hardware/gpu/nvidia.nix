@@ -1,5 +1,5 @@
 {...}: {
-  nvidia = {
+  hardware.nvidia = {
     open = true;
     modesetting.enable = true;
     powerManagement.enable = true;
@@ -14,4 +14,7 @@
       nvidiaBusId = "PCI:1@0:0:0";
     };
   };
+
+  boot.initrd.kernelModules = ["nvidia"];
+  services.xserver.videoDrivers = ["nvidia"];
 }

@@ -6,7 +6,9 @@
 }: {
   imports = [
     ./hardware.nix
+    ./modules/hardware/audio.nix
     ./modules/hardware/bluetooth.nix
+    ./modules/hardware/gpu/nvidia.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -19,7 +21,19 @@
     };
   };
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix = {
+    settings = {
+      experimental-features = ["nix-command" "flakes"];
+
+      auto-optimise-store = true;
+    };
+
+    gc = {
+      automatic = true;
+      dates = "daily";
+      options = "--delete-older-than 1d";
+    };
+  };
 
   boot = {
     loader = {
@@ -54,6 +68,7 @@
   };
 
   programs = {
+    fish.enable = true;
     niri.enable = true;
     nano.enable = false;
     dconf.profiles = lib.mkForce {};
@@ -62,8 +77,6 @@
       extraCompatPackages = [pkgs.proton-ge-bin];
     };
   };
-
-  security.rtkit.enable = true;
 
   documentation = {
     enable = false;
@@ -86,27 +99,6 @@
     printing.enable = false;
     avahi.enable = false;
     getty.autologinUser = "hxragi";
-    xserver.videoDrivers = ["nvidia"];
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      pulse.enable = true;
-
-      wireplumber.extraConfig."10-fifine-mic" = {
-        "monitor.alsa.rules" = [
-          {
-            matches = [
-              {"device.name" = "alsa_card.usb-3142_Fifine_Microphone-00";}
-            ];
-            actions = {
-              update-props = {
-                "api.alsa.soft-mixer" = true;
-              };
-            };
-          }
-        ];
-      };
-    };
   };
 
   xdg.portal = {
@@ -151,7 +143,6 @@
   ];
 
   hardware = {
-    alsa.enablePersistence = true;
     graphics = {
       enable = true;
       enable32Bit = true;
