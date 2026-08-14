@@ -25,6 +25,18 @@ in {
     cursors.enable = true;
     gtk.icon.enable = true;
 
+    nvim = {
+      enable = true;
+
+      settings = {
+        transparent_background = true;
+
+        float = {
+          transparent = true;
+        };
+      };
+    };
+
     kvantum = {
       enable = true;
       apply = true;
@@ -58,14 +70,11 @@ in {
   };
 
   xdg.configFile = {
-    "gtk-4.0/assets".source =
-      "${gtkTheme}/share/themes/${gtkThemeName}/gtk-4.0/assets";
+    "gtk-4.0/assets".source = "${gtkTheme}/share/themes/${gtkThemeName}/gtk-4.0/assets";
 
-    "gtk-4.0/gtk.css".source =
-      "${gtkTheme}/share/themes/${gtkThemeName}/gtk-4.0/gtk.css";
+    "gtk-4.0/gtk.css".source = "${gtkTheme}/share/themes/${gtkThemeName}/gtk-4.0/gtk.css";
 
-    "gtk-4.0/gtk-dark.css".source =
-      "${gtkTheme}/share/themes/${gtkThemeName}/gtk-4.0/gtk-dark.css";
+    "gtk-4.0/gtk-dark.css".source = "${gtkTheme}/share/themes/${gtkThemeName}/gtk-4.0/gtk-dark.css";
   };
 
   qt = {

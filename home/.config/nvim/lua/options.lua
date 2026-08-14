@@ -38,6 +38,12 @@ opt.fixeol = true
 opt.mousescroll = "ver:0,hor:0"
 opt.mouse = ""
 
+-- Providers
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+
 -- Diagnostics & LSP Logs
 vim.diagnostic.config({ virtual_text = true })
 vim.lsp.log.set_level("warn")

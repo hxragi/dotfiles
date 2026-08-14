@@ -1,4 +1,3 @@
-require("plugins.catppuccin")
 require("plugins.nvim-tree")
 require("plugins.mini-tabline")
 require("plugins.mini-statusline")

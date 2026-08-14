@@ -28,7 +28,5 @@
         }
       ];
     };
-
-    style = builtins.readFile ../../.config/ironbar/style.css;
   };
 }

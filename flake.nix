@@ -17,6 +17,11 @@
       url = "github:JakeStanger/ironbar";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -26,6 +31,7 @@
     sops-nix,
     niri,
     ironbar,
+    nur,
     ...
   }: let
     system = "x86_64-linux";
@@ -44,6 +50,7 @@
         {
           nixpkgs.overlays = [
             niri.overlays.niri
+            nur.overlays.default
           ];
 
           home-manager = {

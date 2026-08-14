@@ -1,6 +1,6 @@
 -- Blink CMP
 local cmp = require('blink.cmp')
-cmp.build():pwait()
+
 cmp.setup({
   keymap = { preset = 'enter' },
   appearance = { nerd_font_variant = 'mono' },
