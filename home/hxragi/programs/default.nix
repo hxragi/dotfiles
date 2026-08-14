@@ -1,0 +1,29 @@
+{
+  imports = [
+    ./alacritty.nix
+    ./awww.nix
+    ./bat.nix
+    ./bluetuith.nix
+    ./bottom.nix
+    ./delta.nix
+    ./direnv.nix
+    ./duf.nix
+    ./dust.nix
+    ./eza.nix
+    ./fd.nix
+    ./firefox.nix
+    ./fish.nix
+    ./fuzzel.nix
+    ./git.nix
+    ./ironbar.nix
+    ./neovim.nix
+    ./niri
+    ./procs.nix
+    ./ripgrep.nix
+    ./starship.nix
+    ./tmux.nix
+    ./vesktop.nix
+    ./wl-clipboard.nix
+    ./xwayland-satellite.nix
+  ];
+}

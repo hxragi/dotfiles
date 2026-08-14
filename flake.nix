@@ -1,37 +1,68 @@
 {
-  description = "hxragi's nixos config";
+  description = "hxragi's NixOS config";
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     catppuccin.url = "github:catppuccin/nix";
     sops-nix.url = "github:Mic92/sops-nix";
+    niri.url = "github:sodiboo/niri-flake";
+
+    ironbar = {
+      url = "github:JakeStanger/ironbar";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
+
   outputs = {
     nixpkgs,
     home-manager,
     catppuccin,
     sops-nix,
+    niri,
+    ironbar,
     ...
-  }: {
+  }: let
+    system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
+  in {
     nixosConfigurations.shinoa = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
+      inherit system;
+
       modules = [
-        ./configuration.nix
+        ./hosts/shinoa
+
         sops-nix.nixosModules.sops
+        niri.nixosModules.niri
         home-manager.nixosModules.home-manager
+
         {
+          nixpkgs.overlays = [
+            niri.overlays.niri
+          ];
+
           home-manager = {
             useGlobalPkgs = true;
+            useUserPackages = true;
             backupFileExtension = "hm-bak";
-            extraSpecialArgs = {inherit catppuccin;};
-            users.hxragi = import ./home.nix;
+
+            extraSpecialArgs = {
+              inherit catppuccin ironbar;
+            };
+
+            users.hxragi = import ./home/hxragi;
           };
         }
       ];
+    };
+
+    devShells.${system} = import ./devShells {
+      inherit pkgs;
     };
   };
 }
