@@ -20,9 +20,9 @@
       df = "duf";
       ps = "procs";
 
-      rebuild = "sudo nixos-rebuild switch --flake .#shinoa";
-      check = "nix run nixpkgs#alejandra -- --check . && nix run nixpkgs#statix -- check . && nix run nixpkgs#deadnix -- --fail . && nix flake check";
-      format = "nix run nixpkgs#alejandra -- .";
+      rebuild = "nh os switch";
+      check = "nix flake check --print-build-logs";
+      format = "nix fmt";
     };
   };
 }

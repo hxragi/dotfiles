@@ -18,7 +18,6 @@
 
       core = {
         editor = "nvim";
-        pager = "delta";
       };
 
       init.defaultBranch = "main";
@@ -28,13 +27,6 @@
 
       diff.algorithm = "histogram";
       merge.conflictstyle = "diff3";
-
-      interactive.diffFilter = "delta --color-only";
-
-      delta = {
-        navigate = true;
-        side-by-side = true;
-      };
     };
   };
 }

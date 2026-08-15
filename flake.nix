@@ -9,8 +9,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    catppuccin.url = "github:catppuccin/nix";
-    sops-nix.url = "github:Mic92/sops-nix";
+    catppuccin = {
+      url = "github:catppuccin/nix/release-26.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     niri.url = "github:sodiboo/niri-flake";
 
     ironbar = {
@@ -27,9 +35,15 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
+    self,
     nixpkgs,
     home-manager,
     catppuccin,
@@ -38,6 +52,7 @@
     ironbar,
     nur,
     disko,
+    treefmt-nix,
     ...
   }: let
     system = "x86_64-linux";
@@ -47,12 +62,13 @@
 
       config = {
         allowUnfree = true;
-
         android_sdk.accept_license = true;
       };
     };
-  in {
-    nixosConfigurations.shinoa = nixpkgs.lib.nixosSystem {
+
+    treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
+
+    shinoa = nixpkgs.lib.nixosSystem {
       inherit system;
 
       modules = [
@@ -82,6 +98,32 @@
           };
         }
       ];
+    };
+  in {
+    nixosConfigurations.shinoa = shinoa;
+
+    formatter.${system} = treefmtEval.config.build.wrapper;
+
+    checks.${system} = {
+      formatting = treefmtEval.config.build.check self;
+
+      lint =
+        pkgs.runCommand "nix-lint" {
+          nativeBuildInputs = with pkgs; [
+            deadnix
+            statix
+          ];
+        } ''
+          statix check ${self}
+          deadnix --fail ${self}
+
+          touch $out
+        '';
+
+      shinoa-eval = pkgs.writeText "shinoa-eval" (
+        builtins.unsafeDiscardStringContext
+        shinoa.config.system.build.toplevel.drvPath
+      );
     };
 
     devShells.${system} = import ./devShells {

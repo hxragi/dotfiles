@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: let
-  gtkThemeName = "catppuccin-mocha-mauve-standard";
+  gtkThemeName = "catppuccin-mocha-lavender-standard";
 
   gtkTheme = pkgs.catppuccin-gtk.override {
     accents = ["lavender"];
@@ -17,14 +17,11 @@ in {
 
   catppuccin = {
     enable = true;
-    autoEnable = true;
 
     flavor = "mocha";
     accent = "lavender";
 
-    cursors = {
-      enable = true;
-    };
+    cursors.enable = true;
     gtk.icon.enable = true;
 
     nvim = {

@@ -1,7 +1,6 @@
 {
   imports = [
     ./alacritty.nix
-    ./awww.nix
     ./bat.nix
     ./bluetuith.nix
     ./bottom.nix

@@ -47,8 +47,6 @@
     @define-color mantle #181825;
     @define-color crust #11111b;
 
-    /* GTK reset */
-
     * {
       border: none;
       border-radius: 0;
@@ -56,7 +54,7 @@
       background-image: none;
 
       font-family: "JetBrainsMono Nerd Font Mono";
-      font-size: 12px;
+      font-size: 16px;
     }
 
     box,
@@ -85,8 +83,6 @@
     button:active {
       background-color: @surface1;
     }
-
-    /* Bar */
 
     #bar {
       background-color: @base;
@@ -144,8 +140,6 @@
       box-shadow: inset 0 -2px @red;
     }
 
-    /* Tray */
-
     .tray {
       padding: 0;
       margin-right: 8px;
@@ -177,8 +171,6 @@
       border-radius: 4px;
     }
 
-    /* Clock */
-
     .clock {
       padding: 0 2px;
 
@@ -191,8 +183,6 @@
     .clock:hover {
       color: @lavender;
     }
-
-    /* Generic popovers */
 
     popover {
       background-color: transparent;
@@ -219,8 +209,6 @@
     popover image {
       background-color: transparent;
     }
-
-    /* Tray menus */
 
     popover.menu {
       background-color: transparent;
@@ -299,8 +287,6 @@
       color: @text;
     }
 
-    /* Clock popup */
-
     .popup-clock {
       background-color: @mantle;
       color: @text;
@@ -313,8 +299,6 @@
       font-size: 1.4em;
       font-weight: bold;
     }
-
-    /* Calendar */
 
     calendar,
     calendar.view {
@@ -409,8 +393,6 @@
       color: @crust;
     }
 
-    /* Tooltips */
-
     tooltip {
       background-color: @mantle;
 
@@ -425,8 +407,6 @@
       background-color: transparent;
       color: @text;
     }
-
-    /* GTK controls for future modules */
 
     scale > trough {
       min-height: 4px;

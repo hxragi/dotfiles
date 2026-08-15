@@ -8,6 +8,15 @@
       repeat = false;
     };
 
+    "Mod+L" = {
+      action.spawn = [
+        "loginctl"
+        "lock-session"
+      ];
+
+      repeat = false;
+    };
+
     "Mod+Left".action = focus-column-left;
     "Mod+Down".action = focus-window-down;
     "Mod+Up".action = focus-window-up;
@@ -65,6 +74,5 @@
     "Alt+Print".action.screenshot-window = {};
 
     "Mod+Shift+E".action = quit;
-    "Mod+Shift+P".action = power-off-monitors;
   };
 }

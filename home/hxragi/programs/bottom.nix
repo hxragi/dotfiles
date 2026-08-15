@@ -1,5 +1,3 @@
-{pkgs, ...}: {
-  home.packages = [
-    pkgs.bottom
-  ];
+{
+  programs.bottom.enable = true;
 }

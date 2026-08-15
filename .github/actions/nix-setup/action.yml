@@ -3,8 +3,9 @@ description: Installs Nix with flakes enabled
 
 runs:
   using: composite
+
   steps:
-    - uses: cachix/install-nix-action@v27
+    - uses: cachix/install-nix-action@v31
       with:
         extra_nix_config: |
           experimental-features = nix-command flakes

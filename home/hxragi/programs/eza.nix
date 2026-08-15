@@ -1,5 +1,6 @@
-{pkgs, ...}: {
-  home.packages = [
-    pkgs.eza
-  ];
+{
+  programs.eza = {
+    enable = true;
+    enableFishIntegration = false;
+  };
 }
