@@ -1,6 +1,7 @@
 {
   imports = [
     ./hardware.nix
+    ./disko.nix
     ./kernel.nix
     ./networking.nix
     ./locale.nix

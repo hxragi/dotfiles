@@ -23,7 +23,7 @@
       set -g automatic-rename off
 
       set -g window-status-format "#[bg=#{@thm_surface_0},fg=#{@thm_fg}] #I #W "
-      set -g window-status-current-format "#[bg=#{@thm_mauve},fg=#{@thm_crust},bold] #I #W "
+      set -g window-status-current-format "#[bg=#{@thm_lavender},fg=#{@thm_crust},bold] #I #W "
 
       bind-key -n M-1 select-window -t :=1
       bind-key -n M-2 select-window -t :=2

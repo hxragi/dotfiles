@@ -20,11 +20,11 @@
         prompt = "bac2deff";
         placeholder = "7f849cff";
         input = "cdd6f4ff";
-        match = "74c7ecff";
+        match = "b4bebeff";
         selection = "585b70ff";
         selection-text = "cdd6f4ff";
-        selection-match = "74c7ecff";
-        border = "74c7ecff";
+        selection-match = "b4bebeff";
+        border = "b4bebeff";
       };
 
       border = {

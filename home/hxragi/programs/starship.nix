@@ -55,7 +55,7 @@
       };
 
       git_branch = {
-        style = "bold mauve";
+        style = "bold lavender";
         format = "[on](dimmed text)[ $symbol$branch]($style) ";
         symbol = "󰊢 ";
       };

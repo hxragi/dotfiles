@@ -6,7 +6,7 @@
   gtkThemeName = "catppuccin-mocha-mauve-standard";
 
   gtkTheme = pkgs.catppuccin-gtk.override {
-    accents = ["mauve"];
+    accents = ["lavender"];
     size = "standard";
     variant = "mocha";
   };
@@ -20,9 +20,11 @@ in {
     autoEnable = true;
 
     flavor = "mocha";
-    accent = "mauve";
+    accent = "lavender";
 
-    cursors.enable = true;
+    cursors = {
+      enable = true;
+    };
     gtk.icon.enable = true;
 
     nvim = {

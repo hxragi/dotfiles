@@ -22,6 +22,11 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -32,10 +37,20 @@
     niri,
     ironbar,
     nur,
+    disko,
     ...
   }: let
     system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
+
+    pkgs = import nixpkgs {
+      inherit system;
+
+      config = {
+        allowUnfree = true;
+
+        android_sdk.accept_license = true;
+      };
+    };
   in {
     nixosConfigurations.shinoa = nixpkgs.lib.nixosSystem {
       inherit system;
@@ -43,6 +58,7 @@
       modules = [
         ./hosts/shinoa
 
+        disko.nixosModules.disko
         sops-nix.nixosModules.sops
         niri.nixosModules.niri
         home-manager.nixosModules.home-manager
