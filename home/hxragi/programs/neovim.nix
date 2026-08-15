@@ -16,28 +16,20 @@
       lua-language-server
       yaml-language-server
       nixd
+      fzf
     ];
 
     plugins = with pkgs.vimPlugins; [
       nvim-autopairs
-
       blink-cmp
-
       cord-nvim
-
       nvim-lspconfig
-
       mini-statusline
-      mini-tabline
-
       noice-nvim
       nui-nvim
-
+      mini-tabline
+      fzf-lua
       nvim-tree-lua
-
-      plenary-nvim
-      telescope-nvim
-
       (nvim-treesitter.withPlugins (parsers:
         with parsers; [
           bash
