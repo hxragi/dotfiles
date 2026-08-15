@@ -24,11 +24,5 @@
         "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
       ];
     };
-
-    gc = {
-      automatic = true;
-      dates = "daily";
-      options = "--delete-older-than 1d";
-    };
   };
 }

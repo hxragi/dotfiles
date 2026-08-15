@@ -74,6 +74,7 @@
 
       border: none;
       box-shadow: none;
+      outline: none;
     }
 
     button:hover {
@@ -82,6 +83,17 @@
 
     button:active {
       background-color: @surface1;
+    }
+
+    button:focus,
+    button:focus-visible,
+    button:focus-within {
+      border: none;
+      box-shadow: none;
+
+      outline: none;
+      outline-width: 0;
+      outline-offset: 0;
     }
 
     #bar {
