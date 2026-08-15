@@ -24,9 +24,3 @@ update:
 
 services:
     systemctl --user --no-pager --type=service --state=running
-
-idle-log:
-    journalctl --user -u swayidle -b --no-pager
-
-niri-log:
-    journalctl --user -u niri -b --no-pager

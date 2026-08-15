@@ -15,11 +15,13 @@
     ./fuzzel.nix
     ./git.nix
     ./ironbar.nix
+    ./just.nix
     ./neovim.nix
     ./niri
     ./procs.nix
     ./ripgrep.nix
     ./starship.nix
+    ./swaylock.nix
     ./tmux.nix
     ./vesktop.nix
     ./wl-clipboard.nix

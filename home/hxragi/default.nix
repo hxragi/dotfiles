@@ -3,8 +3,8 @@
     ./identity.nix
     ./manual.nix
     ./theme.nix
+    ./xdg.nix
 
-    ./profiles
     ./programs
     ./services
   ];

@@ -19,10 +19,6 @@
       du = "dust";
       df = "duf";
       ps = "procs";
-
-      rebuild = "nh os switch";
-      check = "nix flake check --print-build-logs";
-      format = "nix fmt";
     };
   };
 }
