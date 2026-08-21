@@ -20,17 +20,8 @@
         "org.freedesktop.impl.portal.FileChooser" = "gtk";
         "org.freedesktop.impl.portal.Settings" = "gtk";
 
-        "org.freedesktop.impl.portal.Screencast" = "wlr";
+        "org.freedesktop.impl.portal.ScreenCast" = "wlr";
         "org.freedesktop.impl.portal.Screenshot" = "wlr";
-      };
-
-      common = {
-        default = [
-          "gtk"
-        ];
-
-        "org.freedesktop.impl.portal.FileChooser" = "gtk";
-        "org.freedesktop.impl.portal.Settings" = "gtk";
       };
     };
   };

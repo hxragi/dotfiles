@@ -16,8 +16,10 @@
     ./git.nix
     ./ironbar.nix
     ./just.nix
+    ./mangohud.nix
     ./neovim.nix
     ./niri
+    ./prismlauncher.nix
     ./procs.nix
     ./ripgrep.nix
     ./starship.nix

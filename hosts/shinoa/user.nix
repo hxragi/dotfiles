@@ -8,8 +8,10 @@
 
     users.hxragi = {
       isNormalUser = true;
+
       extraGroups = [
         "wheel"
+        "docker"
       ];
 
       shell = pkgs.fish;

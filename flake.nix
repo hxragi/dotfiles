@@ -2,15 +2,15 @@
   description = "hxragi's NixOS config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-26.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     catppuccin = {
-      url = "github:catppuccin/nix/release-26.05";
+      url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -19,7 +19,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    niri.url = "github:sodiboo/niri-flake";
+    niri.url = "github:epireyn/niri-flake";
 
     ironbar = {
       url = "github:JakeStanger/ironbar";

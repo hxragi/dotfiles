@@ -46,5 +46,7 @@
     ../../modules/nixos/services/printing.nix
     ../../modules/nixos/services/udisks2.nix
     ../../modules/nixos/services/usbmuxd.nix
+
+    ../../modules/nixos/virtualisation/docker.nix
   ];
 }
