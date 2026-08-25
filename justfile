@@ -9,18 +9,19 @@ fmt:
 check:
     nix flake check --print-build-logs
 
-build:
-    nh os build
-
 switch:
     nh os switch
-
-boot:
-    nh os boot
 
 update:
     nix flake update
     nix flake check --print-build-logs
 
-services:
-    systemctl --user --no-pager --type=service --state=running
+gc:
+    sudo nh clean all --keep 1
+    sudo nix-collect-garbage -d
+
+audit:
+    systemctl list-units --type=service --state=running --no-pager
+    systemctl list-timers --all --no-pager
+    systemctl list-sockets --all --no-pager
+    systemctl --user list-units --type=service --no-pager

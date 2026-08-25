@@ -1,0 +1,3 @@
+{
+  services.tinysparql.enable = false;
+}

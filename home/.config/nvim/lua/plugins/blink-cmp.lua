@@ -12,12 +12,16 @@ cmp.setup({
     },
     trigger = { prefetch_on_insert = false },
   },
-  signature = { enabled = false },
-  sources = {
-    default = { 'lsp', 'path', 'snippets', 'buffer', 'codeium' },
-    providers = {
-      codeium = { name = 'Codeium', module = 'codeium.blink' },
+  signature = {
+    enabled = false,
+    trigger = {
+      enabled = false,
+      show_on_trigger_character = false,
+      show_on_insert_on_trigger_character = false,
     },
+  },
+  sources = {
+    default = { 'lsp', 'path', 'snippets', 'buffer' },
   },
   fuzzy = { implementation = 'rust' },
 })

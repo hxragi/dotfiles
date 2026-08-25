@@ -6,6 +6,7 @@
   xdg.portal = {
     enable = true;
     wlr.enable = true;
+    xdgOpenUsePortal = false;
 
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
@@ -25,4 +26,6 @@
       };
     };
   };
+
+  systemd.services."xdg-desktop-portal-gnome".enable = false;
 }

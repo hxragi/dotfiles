@@ -1,6 +1,6 @@
 {
   imports = [
-    ./alacritty.nix
+    ./alacritty
     ./bat.nix
     ./bluetuith.nix
     ./bottom.nix
@@ -10,22 +10,21 @@
     ./dust.nix
     ./eza.nix
     ./fd.nix
-    ./fish.nix
-    ./fuzzel.nix
-    ./git.nix
-    ./helium.nix
-    ./ironbar.nix
+    ./fish
+    ./fuzzel
+    ./git
+    ./helium
+    ./ironbar
     ./just.nix
-    ./mangohud.nix
-    ./neovim.nix
+    ./neovim
     ./niri
     ./prismlauncher.nix
     ./procs.nix
     ./ripgrep.nix
-    ./starship.nix
+    ./starship
     ./swaylock.nix
-    ./tmux.nix
-    ./vesktop.nix
+    ./tmux
+    ./vesktop
     ./wl-clipboard.nix
     ./xwayland-satellite.nix
   ];

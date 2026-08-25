@@ -15,8 +15,11 @@ in {
     catppuccin.homeModules.catppuccin
   ];
 
+  home.pointerCursor.enable = true;
+
   catppuccin = {
     enable = true;
+    autoEnable = true;
 
     flavor = "mocha";
     accent = "lavender";
