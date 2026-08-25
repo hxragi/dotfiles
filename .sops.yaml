@@ -1,5 +1,5 @@
 keys:
-  - &shinoa age1pas4pu4yz8m4m693zk5lnjvxzchg4cprah4tydq69jjvfszcufpq4g9lgk
+  - &shinoa age1g8waummp8re4zlwqfhedmjmy0ps4kjsnjl3df8u5jv2kefqut9ls9cg6me
 
 creation_rules:
   - path_regex: secrets/.*\.yaml$

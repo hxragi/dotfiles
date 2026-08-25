@@ -3,14 +3,13 @@
     enable = true;
 
     defaultApplications = {
-      "text/html" = "firefox.desktop";
-      "application/xhtml+xml" = "firefox.desktop";
-      "application/pdf" = "firefox.desktop";
-      "image/svg+xml" = "firefox.desktop";
-
-      "x-scheme-handler/http" = "firefox.desktop";
-      "x-scheme-handler/https" = "firefox.desktop";
-      "x-scheme-handler/ftp" = "firefox.desktop";
+      "text/html" = "helium.desktop";
+      "application/xhtml+xml" = "helium.desktop";
+      "application/pdf" = "helium.desktop";
+      "image/svg+xml" = "helium.desktop";
+      "x-scheme-handler/http" = "helium.desktop";
+      "x-scheme-handler/https" = "helium.desktop";
+      "x-scheme-handler/ftp" = "helium.desktop";
     };
   };
 }

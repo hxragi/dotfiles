@@ -10,10 +10,10 @@
     ./dust.nix
     ./eza.nix
     ./fd.nix
-    ./firefox.nix
     ./fish.nix
     ./fuzzel.nix
     ./git.nix
+    ./helium.nix
     ./ironbar.nix
     ./just.nix
     ./mangohud.nix

@@ -6,9 +6,9 @@
     ./networking.nix
     ./locale.nix
     ./user.nix
-    ./secrets.nix
     ./fifine.nix
     ./nvidia-prime.nix
+    ./secrets.nix
     ./state-version.nix
 
     ../../modules/nixos/nix.nix

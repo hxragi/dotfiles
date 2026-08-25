@@ -40,11 +40,6 @@ in {
       enable = true;
       apply = true;
     };
-
-    firefox = {
-      enable = true;
-      profiles.default.enable = true;
-    };
   };
 
   home.packages = [

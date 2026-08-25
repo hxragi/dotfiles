@@ -40,9 +40,14 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    helium = {
+      url = "github:oxcl/nix-flake-helium-browser";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = {
+  outputs = inputs @ {
     self,
     nixpkgs,
     home-manager,
@@ -53,6 +58,7 @@
     nur,
     disko,
     treefmt-nix,
+    helium,
     ...
   }: let
     system = "x86_64-linux";
@@ -83,6 +89,7 @@
           nixpkgs.overlays = [
             niri.overlays.niri
             nur.overlays.default
+            helium.overlays.default
           ];
 
           home-manager = {
@@ -91,7 +98,7 @@
             backupFileExtension = "hm-bak";
 
             extraSpecialArgs = {
-              inherit catppuccin ironbar;
+              inherit inputs catppuccin ironbar;
             };
 
             users.hxragi = import ./home/hxragi;
