@@ -10,24 +10,21 @@
     ./nvidia-prime.nix
     ./secrets.nix
     ./state-version.nix
-
-    ../../modules/nixos/nix.nix
+    ../../modules/nixos/nix
     ../../modules/nixos/nixpkgs.nix
     ../../modules/nixos/bootloader.nix
     ../../modules/nixos/documentation.nix
     ../../modules/nixos/firewall.nix
     ../../modules/nixos/default-packages.nix
     ../../modules/nixos/fonts.nix
-    ../../modules/nixos/portals.nix
+    ../../modules/nixos/portals
     ../../modules/nixos/power.nix
-    ../../modules/nixos/systemd.nix
+    ../../modules/nixos/systemd
     ../../modules/nixos/zram.nix
-
     ../../modules/nixos/hardware/audio.nix
     ../../modules/nixos/hardware/bluetooth.nix
     ../../modules/nixos/hardware/graphics.nix
     ../../modules/nixos/hardware/nvidia.nix
-
     ../../modules/nixos/programs/command-not-found.nix
     ../../modules/nixos/programs/dconf.nix
     ../../modules/nixos/programs/fish.nix
@@ -37,7 +34,6 @@
     ../../modules/nixos/programs/nh.nix
     ../../modules/nixos/programs/niri.nix
     ../../modules/nixos/programs/steam.nix
-
     ../../modules/nixos/services/acpid.nix
     ../../modules/nixos/services/avahi.nix
     ../../modules/nixos/services/fstrim.nix
@@ -54,9 +50,9 @@
     ../../modules/nixos/services/printing.nix
     ../../modules/nixos/services/resolved.nix
     ../../modules/nixos/services/spi2-core.nix
+    ../../modules/nixos/services/tinysparql.nix
     ../../modules/nixos/services/udisks2.nix
     ../../modules/nixos/services/usbmuxd.nix
-
     ../../modules/nixos/virtualisation/docker.nix
   ];
 }

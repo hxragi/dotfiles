@@ -1,3 +1,3 @@
 {
-  services.tinysparql.enable = false;
+  services.gnome.tinysparql.enable = false;
 }

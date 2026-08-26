@@ -1,0 +1,5 @@
+{
+  programs.alacritty.settings.mouse = {
+    hide_when_typing = true;
+  };
+}

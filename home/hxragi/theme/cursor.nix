@@ -1,0 +1,3 @@
+{
+  home.pointerCursor.enable = true;
+}

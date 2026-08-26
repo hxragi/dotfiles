@@ -47,94 +47,98 @@
     };
   };
 
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    home-manager,
-    catppuccin,
-    sops-nix,
-    niri,
-    ironbar,
-    nur,
-    disko,
-    treefmt-nix,
-    helium,
-    ...
-  }: let
-    system = "x86_64-linux";
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      home-manager,
+      catppuccin,
+      sops-nix,
+      niri,
+      ironbar,
+      nur,
+      disko,
+      treefmt-nix,
+      helium,
+      ...
+    }:
+    let
+      system = "x86_64-linux";
 
-    pkgs = import nixpkgs {
-      inherit system;
+      pkgs = import nixpkgs {
+        inherit system;
 
-      config = {
-        allowUnfree = true;
-        android_sdk.accept_license = true;
+        config = {
+          allowUnfree = true;
+          android_sdk.accept_license = true;
+        };
+      };
+
+      treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
+
+      shinoa = nixpkgs.lib.nixosSystem {
+        inherit system;
+
+        modules = [
+          ./hosts/shinoa
+
+          disko.nixosModules.disko
+          sops-nix.nixosModules.sops
+          niri.nixosModules.niri
+          home-manager.nixosModules.home-manager
+
+          {
+            nixpkgs.overlays = [
+              niri.overlays.niri
+              nur.overlays.default
+              helium.overlays.default
+            ];
+
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              backupFileExtension = "hm-bak";
+
+              extraSpecialArgs = {
+                inherit inputs catppuccin ironbar;
+              };
+
+              users.hxragi = import ./home/hxragi;
+            };
+          }
+        ];
+      };
+    in
+    {
+      nixosConfigurations.shinoa = shinoa;
+
+      formatter.${system} = treefmtEval.config.build.wrapper;
+
+      checks.${system} = {
+        formatting = treefmtEval.config.build.check self;
+
+        lint =
+          pkgs.runCommand "nix-lint"
+            {
+              nativeBuildInputs = with pkgs; [
+                deadnix
+                statix
+              ];
+            }
+            ''
+              statix check ${self}
+              deadnix --fail ${self}
+
+              touch $out
+            '';
+
+        shinoa-eval = pkgs.writeText "shinoa-eval" (
+          builtins.unsafeDiscardStringContext shinoa.config.system.build.toplevel.drvPath
+        );
+      };
+
+      devShells.${system} = import ./devShells {
+        inherit pkgs;
       };
     };
-
-    treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
-
-    shinoa = nixpkgs.lib.nixosSystem {
-      inherit system;
-
-      modules = [
-        ./hosts/shinoa
-
-        disko.nixosModules.disko
-        sops-nix.nixosModules.sops
-        niri.nixosModules.niri
-        home-manager.nixosModules.home-manager
-
-        {
-          nixpkgs.overlays = [
-            niri.overlays.niri
-            nur.overlays.default
-            helium.overlays.default
-          ];
-
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            backupFileExtension = "hm-bak";
-
-            extraSpecialArgs = {
-              inherit inputs catppuccin ironbar;
-            };
-
-            users.hxragi = import ./home/hxragi;
-          };
-        }
-      ];
-    };
-  in {
-    nixosConfigurations.shinoa = shinoa;
-
-    formatter.${system} = treefmtEval.config.build.wrapper;
-
-    checks.${system} = {
-      formatting = treefmtEval.config.build.check self;
-
-      lint =
-        pkgs.runCommand "nix-lint" {
-          nativeBuildInputs = with pkgs; [
-            deadnix
-            statix
-          ];
-        } ''
-          statix check ${self}
-          deadnix --fail ${self}
-
-          touch $out
-        '';
-
-      shinoa-eval = pkgs.writeText "shinoa-eval" (
-        builtins.unsafeDiscardStringContext
-        shinoa.config.system.build.toplevel.drvPath
-      );
-    };
-
-    devShells.${system} = import ./devShells {
-      inherit pkgs;
-    };
-  };
 }

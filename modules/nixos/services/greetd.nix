@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   console.colors = [
     "45475a"
     "f38ba8"

@@ -1,3 +1,3 @@
-{lib, ...}: {
-  environment.defaultPackages = lib.mkForce [];
+{ lib, ... }: {
+  environment.defaultPackages = lib.mkForce [ ];
 }

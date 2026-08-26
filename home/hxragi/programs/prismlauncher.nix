@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   home.packages = [
     (pkgs.prismlauncher.override {
       jdks = [

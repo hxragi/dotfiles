@@ -1,0 +1,36 @@
+{ pkgs, ... }:
+let
+  gtkThemeName = "catppuccin-mocha-lavender-standard";
+  gtkTheme = pkgs.catppuccin-gtk.override {
+    accents = [ "lavender" ];
+    size = "standard";
+    variant = "mocha";
+  };
+in
+{
+  home.packages = [
+    gtkTheme
+  ];
+  gtk = {
+    enable = true;
+    theme = {
+      name = gtkThemeName;
+      package = gtkTheme;
+    };
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
+  };
+  xdg.configFile = {
+    "gtk-4.0/assets".source = "${gtkTheme}/share/themes/${gtkThemeName}/gtk-4.0/assets";
+    "gtk-4.0/gtk.css".source = "${gtkTheme}/share/themes/${gtkThemeName}/gtk-4.0/gtk.css";
+    "gtk-4.0/gtk-dark.css".source = "${gtkTheme}/share/themes/${gtkThemeName}/gtk-4.0/gtk-dark.css";
+  };
+  dconf.settings."org/gnome/desktop/interface" = {
+    color-scheme = "prefer-dark";
+    gtk-theme = gtkThemeName;
+  };
+}

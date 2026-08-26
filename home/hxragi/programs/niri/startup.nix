@@ -1,3 +1,3 @@
 {
-  programs.niri.settings.spawn-at-startup = [];
+  programs.niri.settings.spawn-at-startup = [ ];
 }

@@ -1,0 +1,14 @@
+{
+  programs.fuzzel.settings.colors = {
+    background = "1e1e2edd";
+    text = "cdd6f4ff";
+    prompt = "bac2deff";
+    placeholder = "7f849cff";
+    input = "cdd6f4ff";
+    match = "b4bebeff";
+    selection = "585b70ff";
+    selection-text = "cdd6f4ff";
+    selection-match = "b4bebeff";
+    border = "b4bebeff";
+  };
+}

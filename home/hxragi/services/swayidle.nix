@@ -1,8 +1,10 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   loginctl = "${pkgs.systemd}/bin/loginctl";
   niri = "${pkgs.niri}/bin/niri";
   swaylock = "${pkgs.swaylock}/bin/swaylock";
-in {
+in
+{
   services.swayidle = {
     enable = true;
 

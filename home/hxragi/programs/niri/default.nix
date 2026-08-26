@@ -1,12 +1,13 @@
 {
   imports = [
-    ./environment.nix
-    ./input.nix
-    ./outputs.nix
-    ./layout.nix
     ./appearance.nix
-    ./rules.nix
     ./binds.nix
     ./debug.nix
+    ./environment.nix
+    ./input.nix
+    ./layout.nix
+    ./outputs.nix
+    ./rules.nix
+    ./startup.nix
   ];
 }
