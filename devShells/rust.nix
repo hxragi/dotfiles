@@ -6,6 +6,7 @@ pkgs.mkShell {
     rust-analyzer
     rustc
     rustfmt
+    sqlx-cli
   ];
 
   RUST_BACKTRACE = "1";

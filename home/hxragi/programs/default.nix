@@ -1,6 +1,5 @@
 {
   imports = [
-    ./alacritty
     ./bat.nix
     ./bluetuith.nix
     ./bottom.nix
@@ -11,11 +10,13 @@
     ./eza.nix
     ./fd.nix
     ./fish
+    ./foot
     ./fuzzel
     ./git
     ./helium
     ./ironbar
     ./just.nix
+    ./obsidian.nix
     ./neovim
     ./niri
     ./prismlauncher.nix

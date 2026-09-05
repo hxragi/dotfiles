@@ -8,7 +8,7 @@
       pictures = "$HOME/pictures";
       projects = "$HOME/projects";
       desktop = "$HOME";
-      documents = "$HOME";
+      documents = "$HOME/documents";
       music = "$HOME";
       publicShare = "$HOME";
       templates = "$HOME";

@@ -1,6 +1,6 @@
 { config, ... }: {
   programs.niri.settings.binds = with config.lib.niri.actions; {
-    "Mod+Return".action.spawn = "alacritty";
+    "Mod+Return".action.spawn = "foot";
     "Mod+C".action.spawn = "fuzzel";
 
     "Mod+Q" = {

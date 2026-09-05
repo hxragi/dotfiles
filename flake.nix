@@ -45,6 +45,11 @@
       url = "github:oxcl/nix-flake-helium-browser";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    obsidian-extensions = {
+      url = "github:karaolidis/nix-obsidian-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -60,6 +65,7 @@
       disko,
       treefmt-nix,
       helium,
+      obsidian-extensions,
       ...
     }:
     let
@@ -92,6 +98,7 @@
               niri.overlays.niri
               nur.overlays.default
               helium.overlays.default
+              obsidian-extensions.overlays.default
             ];
 
             home-manager = {
