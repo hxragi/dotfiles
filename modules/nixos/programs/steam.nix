@@ -3,7 +3,7 @@
     enable = true;
 
     extraCompatPackages = [
-      pkgs.proton-ge-bin
+      (pkgs.callPackage ../../../packages/proton-cachyos.nix { })
     ];
   };
 }

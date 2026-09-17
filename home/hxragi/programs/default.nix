@@ -17,6 +17,7 @@
     ./ironbar
     ./just.nix
     ./obsidian.nix
+    ./opencode.nix
     ./neovim
     ./niri
     ./prismlauncher.nix
