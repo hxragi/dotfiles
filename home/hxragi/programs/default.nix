@@ -25,6 +25,7 @@
     ./ripgrep.nix
     ./starship
     ./swaylock.nix
+    ./telegram.nix
     ./tmux
     ./vesktop
     ./wl-clipboard.nix
