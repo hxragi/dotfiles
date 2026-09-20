@@ -16,6 +16,7 @@
     ./helium
     ./ironbar
     ./just.nix
+    ./krita.nix
     ./obsidian.nix
     ./opencode.nix
     ./neovim

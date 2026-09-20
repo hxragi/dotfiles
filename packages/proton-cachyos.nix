@@ -1,4 +1,8 @@
-{ lib, stdenvNoCC, fetchzip }:
+{
+  lib,
+  stdenvNoCC,
+  fetchzip,
+}:
 
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "proton-cachyos";
@@ -10,7 +14,10 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     hash = "sha256-8Y7orUvnFOG0zSqCrMyvmclmy3JInj7d8A2h0Y7RwhE=";
   };
 
-  outputs = [ "out" "steamcompattool" ];
+  outputs = [
+    "out"
+    "steamcompattool"
+  ];
 
   buildCommand = ''
     runHook preBuild
