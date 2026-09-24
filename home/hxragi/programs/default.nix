@@ -17,6 +17,7 @@
     ./ironbar
     ./just.nix
     ./krita.nix
+    ./localsend.nix
     ./obsidian.nix
     ./opencode.nix
     ./neovim
