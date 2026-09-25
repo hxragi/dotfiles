@@ -6,4 +6,8 @@
   java = import ./java.nix {
     inherit pkgs;
   };
+
+  solidity = import ./solidity.nix {
+    inherit pkgs;
+  };
 }

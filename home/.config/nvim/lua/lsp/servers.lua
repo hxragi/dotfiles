@@ -8,6 +8,7 @@ local servers = {
   'ruff',
   'yamlls',
   'nixd',
+  'solidity_ls',
 }
 
 vim.lsp.config("*", {

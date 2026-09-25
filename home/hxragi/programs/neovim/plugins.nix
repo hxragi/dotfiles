@@ -20,6 +20,7 @@
         nix
         python
         rust
+        solidity
         toml
         vim
         vimdoc
