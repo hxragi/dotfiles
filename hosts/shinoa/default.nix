@@ -5,7 +5,6 @@
     ./kernel.nix
     ./networking.nix
     ./locale.nix
-    ./nh.nix
     ./user.nix
     ./fifine.nix
     ./nvidia-prime.nix
@@ -33,7 +32,6 @@
     ../../modules/nixos/programs/gamemode.nix
     ../../modules/nixos/programs/nano.nix
     ../../modules/nixos/programs/nautilus.nix
-    ../../modules/nixos/programs/nh.nix
     ../../modules/nixos/programs/niri.nix
     ../../modules/nixos/programs/steam.nix
     ../../modules/nixos/services/acpid.nix

@@ -10,14 +10,13 @@ check:
     nix flake check --print-build-logs
 
 switch:
-    nh os switch
+    sudo nixos-rebuild switch --flake .#shinoa
 
 update:
     nix flake update
     nix flake check --print-build-logs
 
 gc:
-    sudo nh clean all --keep 1
     sudo nix-collect-garbage -d
 
 audit:
