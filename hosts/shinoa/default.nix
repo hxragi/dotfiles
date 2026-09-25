@@ -5,6 +5,7 @@
     ./kernel.nix
     ./networking.nix
     ./locale.nix
+    ./nh.nix
     ./user.nix
     ./fifine.nix
     ./nvidia-prime.nix

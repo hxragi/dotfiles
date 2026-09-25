@@ -1,8 +1,8 @@
 {
+  # The flake path is machine-specific and lives in the host directory; see
+  # hosts/shinoa/nh.nix.
   programs.nh = {
     enable = true;
-
-    flake = "/home/hxragi/.dotfiles";
 
     clean = {
       enable = true;
