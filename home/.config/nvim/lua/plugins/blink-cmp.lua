@@ -1,4 +1,3 @@
--- Blink CMP
 local cmp = require("blink.cmp")
 
 cmp.setup({

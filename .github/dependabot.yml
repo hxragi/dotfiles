@@ -11,9 +11,6 @@ updates:
     labels:
       - dependencies
     groups:
-      # Every one of these declares `inputs.nixpkgs.follows = "nixpkgs"`, so they
-      # have to move as one commit or the lock file ends up pinning two
-      # different nixpkgs revisions.
       nixpkgs-family:
         patterns:
           - nixpkgs
@@ -27,8 +24,6 @@ updates:
           - helium
           - obsidian-extensions
 
-      # niri-flake is the one input that does not follow nixpkgs, so it is
-      # versioned independently.
       niri:
         patterns:
           - niri

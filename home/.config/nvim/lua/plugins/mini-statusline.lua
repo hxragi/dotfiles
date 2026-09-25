@@ -1,4 +1,3 @@
--- Mini Statusline
 require("mini.statusline").setup({
   content = {
     active = function()
