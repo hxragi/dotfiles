@@ -15,6 +15,7 @@
     ../../modules/nixos/bootloader.nix
     ../../modules/nixos/documentation.nix
     ../../modules/nixos/firewall.nix
+    ../../modules/nixos/security.nix
     ../../modules/nixos/default-packages.nix
     ../../modules/nixos/fonts.nix
     ../../modules/nixos/portals
