@@ -1,0 +1,34 @@
+version: 2
+
+updates:
+  - package-ecosystem: nix
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+    commit-message:
+      prefix: "chore(flake)"
+    labels:
+      - dependencies
+    groups:
+      # Every one of these declares `inputs.nixpkgs.follows = "nixpkgs"`, so they
+      # have to move as one commit or the lock file ends up pinning two
+      # different nixpkgs revisions.
+      nixpkgs-family:
+        patterns:
+          - nixpkgs
+          - home-manager
+          - catppuccin
+          - sops-nix
+          - ironbar
+          - nur
+          - disko
+          - treefmt-nix
+          - helium
+          - obsidian-extensions
+
+      # niri-flake is the one input that does not follow nixpkgs, so it is
+      # versioned independently.
+      niri:
+        patterns:
+          - niri
