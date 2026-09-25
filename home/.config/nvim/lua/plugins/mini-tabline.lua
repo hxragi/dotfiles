@@ -1,4 +1,4 @@
 -- Mini Tabline
-require('mini.tabline').setup({
-  show_icons = true
+require("mini.tabline").setup({
+  show_icons = true,
 })

@@ -1,9 +1,9 @@
 -- Blink CMP
-local cmp = require('blink.cmp')
+local cmp = require("blink.cmp")
 
 cmp.setup({
-  keymap = { preset = 'enter' },
-  appearance = { nerd_font_variant = 'mono' },
+  keymap = { preset = "enter" },
+  appearance = { nerd_font_variant = "mono" },
   completion = {
     documentation = { auto_show = false, auto_show_delay_ms = 5000 },
     menu = {
@@ -21,7 +21,7 @@ cmp.setup({
     },
   },
   sources = {
-    default = { 'lsp', 'path', 'snippets', 'buffer' },
+    default = { "lsp", "path", "snippets", "buffer" },
   },
-  fuzzy = { implementation = 'rust' },
+  fuzzy = { implementation = "rust" },
 })
