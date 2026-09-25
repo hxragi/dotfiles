@@ -14,5 +14,10 @@
       "jakestanger.cachix.org-1:VWJE7AWNe5/KOEvCQRxoE8UsI2Xs2nHULJ7TEjYm7mM="
       "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
     ];
+
+    # Retry a cache that reported "not found" within minutes rather than the
+    # default hour, so a newly published binary cache becomes usable right
+    # after a flake update instead of after a wait.
+    narinfo-cache-negative-ttl = 300;
   };
 }
