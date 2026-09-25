@@ -8,12 +8,17 @@ local servers = {
   'ruff',
   'yamlls',
   'nixd',
-  'solc',
-  'solidity_ls',
+  'forge_lsp',
 }
 
 vim.lsp.config("*", {
   capabilities = capabilities,
+})
+
+vim.lsp.config('forge_lsp', {
+  cmd = { 'forge', 'lsp' },
+  filetypes = { 'solidity' },
+  root_markers = { 'foundry.toml', '.git' },
 })
 
 vim.lsp.config('rust_analyzer', {
