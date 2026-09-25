@@ -8,6 +8,7 @@ local servers = {
   'ruff',
   'yamlls',
   'nixd',
+  'solc',
   'solidity_ls',
 }
 
