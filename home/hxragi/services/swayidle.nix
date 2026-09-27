@@ -1,8 +1,11 @@
-{ pkgs, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 let
-  loginctl = "${pkgs.systemd}/bin/loginctl";
-  niri = "${pkgs.niri}/bin/niri";
-  swaylock = "${pkgs.swaylock}/bin/swaylock";
+  niri = "${config.programs.niri.package}/bin/niri";
+  swaylock = "${pkgs.swaylock}/bin/swaylock -f";
 in
 {
   services.swayidle = {
@@ -11,19 +14,12 @@ in
     timeouts = [
       {
         timeout = 300;
-        command = "${loginctl} lock-session";
-      }
-
-      {
-        timeout = 330;
-        command = "${niri} msg action power-off-monitors";
-        resumeCommand = "${niri} msg action power-on-monitors";
+        command = swaylock;
       }
     ];
 
     events = {
-      "lock" = "${swaylock} -f";
-      "before-sleep" = "${swaylock} -f";
+      "before-sleep" = swaylock;
       "after-resume" = "${niri} msg action power-on-monitors";
     };
   };

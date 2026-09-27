@@ -1,14 +1,18 @@
-{ catppuccin, ... }: {
+{
+  catppuccin,
+  ...
+}:
+{
   imports = [
     catppuccin.homeModules.catppuccin
   ];
+  home.pointerCursor.enable = true;
   catppuccin = {
     enable = true;
     autoEnable = true;
     flavor = "mocha";
     accent = "lavender";
     cursors.enable = true;
-    gtk.icon.enable = true;
     nvim = {
       enable = true;
       settings = {

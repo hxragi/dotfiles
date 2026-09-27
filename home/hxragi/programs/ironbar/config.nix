@@ -10,7 +10,6 @@
           type = "workspaces";
         }
       ];
-      center = [ ];
       end = [
         {
           type = "tray";

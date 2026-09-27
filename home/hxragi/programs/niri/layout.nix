@@ -1,7 +1,6 @@
 {
   programs.niri.settings.layout = {
     gaps = 8;
-    center-focused-column = "never";
 
     preset-column-widths = [
       { proportion = 0.33333; }
@@ -12,6 +11,5 @@
     default-column-width.proportion = 0.5;
 
     focus-ring.enable = false;
-    border.enable = false;
   };
 }

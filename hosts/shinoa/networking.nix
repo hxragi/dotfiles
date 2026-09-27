@@ -12,7 +12,9 @@
     useNetworkd = lib.mkForce true;
     useDHCP = lib.mkForce false;
 
-    resolvconf.enable = false;
+    nameservers = [
+      "192.168.2.1"
+    ];
   };
 
   systemd.network = {
