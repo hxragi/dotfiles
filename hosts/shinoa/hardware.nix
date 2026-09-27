@@ -25,6 +25,7 @@
 
     kernelModules = [
       "kvm-intel"
+      "tun"
     ];
 
     extraModulePackages = [ ];

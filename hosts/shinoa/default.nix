@@ -50,6 +50,7 @@
     ../../modules/nixos/services/printing.nix
     ../../modules/nixos/services/resolved.nix
     ../../modules/nixos/services/spi2-core.nix
+    ../../modules/nixos/services/tailscale.nix
     ../../modules/nixos/services/tinysparql.nix
     ../../modules/nixos/services/udisks2.nix
     ../../modules/nixos/services/usbmuxd.nix
