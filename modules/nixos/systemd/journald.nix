@@ -3,7 +3,7 @@
     Storage = "persistent";
     Compress = true;
 
-    SystemMaxUse = "2G";
+    SystemMaxUse = "50M";
     SystemKeepFree = "10G";
     MaxRetentionSec = "1month";
 
