@@ -4,6 +4,7 @@
     "PasswordManagerEnabled" = false;
     "SyncDisabled" = true;
     "SpellcheckEnabled" = false;
+    "BookmarkBarEnabled" = false;
     "DefaultDownloadDirectory" = "\${user_home}/downloads";
     "PromptForDownload" = false;
   };
