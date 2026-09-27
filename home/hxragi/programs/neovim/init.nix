@@ -5,5 +5,5 @@
     require("plugins")
     require("lsp")
   '';
-  xdg.configFile."nvim/lua".source = ../../../.config/nvim/lua;
+  xdg.configFile."nvim/lua".source = ./lua;
 }

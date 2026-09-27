@@ -1,6 +1,6 @@
-{
+{ fonts, ... }: {
   programs.fuzzel.settings.main = {
-    font = "JetBrainsMono:size=20";
+    font = "${fonts.mono}:size=${toString fonts.scale}";
     width = 45;
     lines = 7;
     horizontal-pad = 15;

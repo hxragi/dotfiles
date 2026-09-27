@@ -88,12 +88,15 @@
       shinoa = nixpkgs.lib.nixosSystem {
         inherit system;
 
+        specialArgs = {
+          inherit inputs;
+        };
+
         modules = [
           ./hosts/shinoa
 
           disko.nixosModules.disko
           sops-nix.nixosModules.sops
-          niri.nixosModules.niri
           home-manager.nixosModules.home-manager
 
           {
@@ -111,6 +114,8 @@
 
               extraSpecialArgs = {
                 inherit inputs catppuccin ironbar;
+                fonts = import ./lib/fonts.nix;
+                palette = import ./lib/palette.nix;
               };
 
               users.hxragi = import ./home/hxragi;

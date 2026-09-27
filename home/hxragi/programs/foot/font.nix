@@ -1,5 +1,5 @@
-{
+{ fonts, ... }: {
   programs.foot.settings.main = {
-    font = "JetBrainsMono Nerd Font Mono:size=16";
+    font = "${fonts.mono}:size=${toString fonts.size}";
   };
 }

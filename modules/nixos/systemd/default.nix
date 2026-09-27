@@ -3,9 +3,6 @@
     ./devices.nix
     ./initrd.nix
     ./journald.nix
-    ./devices.nix
-    ./initrd.nix
-    ./journald.nix
     ./services.nix
     ./sockets.nix
     ./targets.nix

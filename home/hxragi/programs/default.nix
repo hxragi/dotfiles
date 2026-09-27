@@ -18,10 +18,10 @@
     ./just.nix
     ./krita.nix
     ./localsend.nix
-    ./obsidian.nix
-    ./opencode.nix
     ./neovim
     ./niri
+    ./obsidian.nix
+    ./opencode.nix
     ./prismlauncher.nix
     ./procs.nix
     ./ripgrep.nix

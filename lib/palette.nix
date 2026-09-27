@@ -1,5 +1,5 @@
 {
-  programs.starship.settings.palettes.catppuccin_mocha = {
+  mocha = {
     rosewater = "#f5e0dc";
     flamingo = "#f2cdcd";
     pink = "#f5c2e7";

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ fonts, pkgs, ... }: {
   programs.obsidian = {
     enable = true;
     vaults.notes.target = "documents";
@@ -7,9 +7,9 @@
         showInlineTitle = false;
       };
       appearance = {
-        textFontFamily = "JetBrains Mono";
-        interfaceFontFamily = "JetBrains Mono";
-        monospaceFontFamily = "JetBrains Mono";
+        textFontFamily = fonts.plain;
+        interfaceFontFamily = fonts.plain;
+        monospaceFontFamily = fonts.plain;
       };
       communityPlugins = with pkgs.obsidianPlugins; [
         obsidian-kanban

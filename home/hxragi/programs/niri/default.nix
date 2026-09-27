@@ -8,6 +8,5 @@
     ./layout.nix
     ./outputs.nix
     ./rules.nix
-    ./startup.nix
   ];
 }

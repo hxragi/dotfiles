@@ -1,24 +1,25 @@
 {
-  xdg.configFile."ironbar/style.css".text = ''
-    @define-color lavender #b4befe;
-    @define-color red #f38ba8;
-    @define-color text #cdd6f4;
-    @define-color subtext0 #a6adc8;
-    @define-color overlay0 #6c7086;
-    @define-color surface0 #313244;
-    @define-color surface1 #45475a;
-    @define-color surface2 #585b70;
-    @define-color base #1e1e2e;
-    @define-color mantle #181825;
-    @define-color crust #11111b;
+  fonts,
+  lib,
+  palette,
+  ...
+}:
+let
+  colors = lib.concatStringsSep "\n" (
+    lib.mapAttrsToList (name: hex: "@define-color ${name} ${hex};") palette.mocha
+  );
+in
+{
+  programs.ironbar.style = ''
+    ${colors}
 
     * {
       border: none;
       border-radius: 0;
       box-shadow: none;
       background-image: none;
-      font-family: "JetBrainsMono Nerd Font Mono";
-      font-size: 16px;
+      font-family: "${fonts.mono}";
+      font-size: ${toString fonts.size}px;
     }
 
     box,

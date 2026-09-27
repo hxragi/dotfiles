@@ -1,36 +1,31 @@
-{ pkgs, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 let
-  gtkThemeName = "catppuccin-mocha-lavender-standard";
-  gtkTheme = pkgs.catppuccin-gtk.override {
-    accents = [ "lavender" ];
-    size = "standard";
-    variant = "mocha";
-  };
+  themeName = "catppuccin-${config.catppuccin.flavor}-${config.catppuccin.accent}-standard";
 in
 {
-  home.packages = [
-    gtkTheme
-  ];
   gtk = {
     enable = true;
     theme = {
-      name = gtkThemeName;
-      package = gtkTheme;
-    };
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
+      name = themeName;
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ config.catppuccin.accent ];
+        size = "standard";
+        variant = config.catppuccin.flavor;
+      };
     };
   };
   xdg.configFile = {
-    "gtk-4.0/assets".source = "${gtkTheme}/share/themes/${gtkThemeName}/gtk-4.0/assets";
-    "gtk-4.0/gtk.css".source = "${gtkTheme}/share/themes/${gtkThemeName}/gtk-4.0/gtk.css";
-    "gtk-4.0/gtk-dark.css".source = "${gtkTheme}/share/themes/${gtkThemeName}/gtk-4.0/gtk-dark.css";
+    "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${themeName}/gtk-4.0/assets";
+    "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${themeName}/gtk-4.0/gtk.css";
+    "gtk-4.0/gtk-dark.css".source =
+      "${config.gtk.theme.package}/share/themes/${themeName}/gtk-4.0/gtk-dark.css";
   };
   dconf.settings."org/gnome/desktop/interface" = {
     color-scheme = "prefer-dark";
-    gtk-theme = gtkThemeName;
+    gtk-theme = themeName;
   };
 }
