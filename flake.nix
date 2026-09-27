@@ -19,7 +19,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    niri.url = "github:epireyn/niri-flake";
+    niri = {
+      url = "github:epireyn/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     ironbar = {
       url = "github:JakeStanger/ironbar";
