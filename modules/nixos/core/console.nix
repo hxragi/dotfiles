@@ -3,7 +3,7 @@
   ...
 }:
 let
-  p = (import ../../lib/palette.nix).mocha;
+  p = (import ../../../lib/palette.nix).mocha;
   hex = name: lib.removePrefix "#" p.${name};
 in
 {
