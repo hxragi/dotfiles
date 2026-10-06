@@ -1,5 +1,7 @@
 {
   imports = [
+    ../../modules/nixos
+
     ./disko.nix
     ./fifine.nix
     ./hardware.nix
@@ -10,25 +12,5 @@
     ./secrets.nix
     ./state-version.nix
     ./user.nix
-
-    ../../modules/nixos/bootloader.nix
-    ../../modules/nixos/console.nix
-    ../../modules/nixos/default-packages.nix
-    ../../modules/nixos/desktop.nix
-    ../../modules/nixos/documentation.nix
-    ../../modules/nixos/firewall.nix
-    ../../modules/nixos/fonts.nix
-    ../../modules/nixos/networking.nix
-    ../../modules/nixos/nix
-    ../../modules/nixos/nixpkgs.nix
-    ../../modules/nixos/power.nix
-    ../../modules/nixos/security.nix
-    ../../modules/nixos/swap.nix
-    ../../modules/nixos/hardware
-    ../../modules/nixos/portals
-    ../../modules/nixos/programs
-    ../../modules/nixos/services
-    ../../modules/nixos/systemd
-    ../../modules/nixos/virtualisation
   ];
 }
