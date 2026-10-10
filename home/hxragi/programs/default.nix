@@ -16,7 +16,6 @@
     ./helium
     ./ironbar
     ./just.nix
-    ./krita.nix
     ./localsend.nix
     ./neovim
     ./niri

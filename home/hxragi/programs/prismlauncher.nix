@@ -5,6 +5,12 @@
       jdks = [
         pkgs.temurin-jre-bin-25
       ];
+      additionalLibs = with pkgs; [
+        libxi
+        libxcursor
+        libxrandr
+        libxxf86vm
+      ];
     };
   };
 }
