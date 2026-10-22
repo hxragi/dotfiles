@@ -1,5 +1,6 @@
 {
   imports = [
+    ./antigravity.nix
     ./bat.nix
     ./bluetuith.nix
     ./bottom.nix
@@ -20,7 +21,6 @@
     ./neovim
     ./niri
     ./obsidian.nix
-    ./opencode.nix
     ./prismlauncher.nix
     ./procs.nix
     ./ripgrep.nix
