@@ -74,7 +74,6 @@
       treefmt-nix,
       helium,
       obsidian-extensions,
-      antigravity-nix,
       ...
     }:
     let
