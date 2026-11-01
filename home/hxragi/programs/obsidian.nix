@@ -1,7 +1,7 @@
 { fonts, pkgs, ... }: {
   programs.obsidian = {
     enable = true;
-    vaults.notes.target = "documents";
+    vaults.notes.target = "documents/vault";
 
     defaultSettings = {
       app = {
@@ -16,17 +16,42 @@
       };
 
       corePlugins = [
-        "graph"
         "file-explorer"
+        "global-search"
+        "switcher"
+        "graph"
+        "backlink"
         "canvas"
+        "outgoing-link"
+        "tag-pane"
+        "properties"
+        "page-preview"
+        "command-palette"
+        "editor-status"
+        "bookmarks"
+        "outline"
+        "word-count"
+        "file-recovery"
+        {
+          name = "templates";
+          settings = {
+            folder = "05-System/Templates";
+          };
+        }
       ];
 
       hotkeys = {
         "periodic-notes:open-daily-note" = [
-          { modifiers = [ "Alt" ]; key = "D"; }
+          {
+            modifiers = [ "Alt" ];
+            key = "D";
+          }
         ];
         "periodic-notes:open-weekly-note" = [
-          { modifiers = ["Alt" ]; key = "W"; }
+          {
+            modifiers = [ "Alt" ];
+            key = "W";
+          }
         ];
       };
 
@@ -42,7 +67,7 @@
         {
           pkg = templater-obsidian;
           settings = {
-            templates_folder = "99 System/Templates";
+            templates_folder = "05-System/Templates";
             trigger_on_file_creation = true;
           };
         }
@@ -52,14 +77,14 @@
             daily = {
               enabled = true;
               format = "YYYY-MM-DD";
-              template = "99 System/Templates/T_Daily.md";
-              folder = "01 Periodic/Daily";
+              template = "05-System/Templates/Daily.md";
+              folder = "01-Daily";
             };
             weekly = {
               enabled = true;
-              format = "YYYY-[W]WW";
-              template = "99 System/Templates/T_Weekly.md";
-              folder = "01 Periodic/Weekly";
+              format = "GGGG-[W]WW";
+              template = "05-System/Templates/Weekly.md";
+              folder = "02-Weekly";
             };
           };
         }
