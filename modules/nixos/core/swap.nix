@@ -3,7 +3,7 @@
     enable = true;
     memoryPercent = 50;
     algorithm = "zstd";
-    priority = 5;
+    priority = 100;
   };
 
   swapDevices = [
