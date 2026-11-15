@@ -3,7 +3,7 @@
     take = {
       description = "Create directory and enter it";
       body = ''
-        mkdir -p $argv[1]; and cd $argv[1]
+        mkdir -p $argv[1]; and z $argv[1]
       '';
     };
 
