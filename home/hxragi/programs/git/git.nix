@@ -1,3 +1,7 @@
+{ pkgs, ... }:
 {
-  programs.git.enable = true;
+  programs.git = {
+    enable = true;
+    package = pkgs.gitMinimal;
+  };
 }
