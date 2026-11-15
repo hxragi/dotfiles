@@ -1,4 +1,6 @@
 {
+  boot.kernelModules = [ "overlay" ];
+
   virtualisation.docker = {
     enable = true;
 

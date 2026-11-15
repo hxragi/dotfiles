@@ -1,13 +1,20 @@
 {
-  nix.settings = {
-    auto-optimise-store = false;
+  nix = {
+    settings = {
+      auto-optimise-store = true;
+      keep-derivations = false;
+      keep-outputs = false;
+    };
 
-    keep-derivations = false;
-  };
+    optimise = {
+      automatic = true;
+      dates = [ "weekly" ];
+    };
 
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 14d";
+    };
   };
 }

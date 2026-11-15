@@ -18,6 +18,7 @@ update:
 
 gc:
     sudo nix-collect-garbage --delete-older-than 14d
+    nix-collect-garbage --delete-older-than 14d || true
     sudo nix-store --optimise
     sudo find /nix/var/nix/profiles /nix/var/nix/gcroots/per-user -maxdepth 1 -xtype l -delete
     sudo journalctl --vacuum-time=1month

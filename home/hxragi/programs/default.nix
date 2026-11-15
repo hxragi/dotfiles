@@ -1,9 +1,11 @@
 {
   imports = [
     ./antigravity.nix
+    ./archive.nix
     ./bat.nix
     ./bluetuith.nix
     ./bottom.nix
+    ./comma.nix
     ./delta.nix
     ./direnv.nix
     ./duf.nix
@@ -28,8 +30,10 @@
     ./swaylock.nix
     ./telegram.nix
     ./tmux
+    ./tokei.nix
     ./vesktop
     ./wl-clipboard.nix
     ./xwayland-satellite.nix
+    ./zoxide.nix
   ];
 }

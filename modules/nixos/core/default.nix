@@ -10,5 +10,6 @@
     ./nixpkgs.nix
     ./security.nix
     ./swap.nix
+    ./tmp.nix
   ];
 }

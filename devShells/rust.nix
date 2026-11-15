@@ -3,7 +3,9 @@ pkgs.mkShell {
   packages = with pkgs; [
     cargo
     cargo-nextest
-    cargo-llvm-cov
+    (cargo-llvm-cov.overrideAttrs {
+      doCheck = false;
+    })
     clippy
     rust-analyzer
     rustc

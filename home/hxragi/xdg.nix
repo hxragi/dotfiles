@@ -1,18 +1,24 @@
+{ config, ... }:
+let
+  home = config.home.homeDirectory;
+in
 {
   xdg = {
+    enable = true;
+
     userDirs = {
       enable = true;
       createDirectories = true;
 
-      download = "$HOME/downloads";
-      pictures = "$HOME/pictures";
-      projects = "$HOME/projects";
-      desktop = "$HOME";
-      documents = "$HOME/documents";
-      music = "$HOME";
-      publicShare = "$HOME";
-      templates = "$HOME";
-      videos = "$HOME";
+      download = "${home}/downloads";
+      pictures = "${home}/pictures";
+      projects = "${home}/projects";
+      desktop = "${home}/desktop";
+      documents = "${home}/documents";
+      music = "${home}/media/music";
+      videos = "${home}/media/videos";
+      publicShare = "${home}/public";
+      templates = "${home}/templates";
     };
 
     mimeApps = {
@@ -29,4 +35,27 @@
       };
     };
   };
+
+  home.sessionVariables = {
+    # Isolate dotfiles and caches into XDG base directories
+    HISTFILE = "${config.xdg.stateHome}/bash/history";
+    LESSHISTFILE = "${config.xdg.stateHome}/lesshst";
+    INPUTRC = "${config.xdg.configHome}/readline/inputrc";
+    WGETRC = "${config.xdg.configHome}/wgetrc";
+
+    CARGO_HOME = "${config.xdg.dataHome}/cargo";
+    RUSTUP_HOME = "${config.xdg.dataHome}/rustup";
+    GOPATH = "${config.xdg.dataHome}/go";
+    DOCKER_CONFIG = "${config.xdg.configHome}/docker";
+    NPM_CONFIG_USERCONFIG = "${config.xdg.configHome}/npm/npmrc";
+    NODE_REPL_HISTORY = "${config.xdg.stateHome}/node_repl_history";
+    CUDA_CACHE_PATH = "${config.xdg.cacheHome}/nv";
+    __GL_SHADER_DISK_CACHE_PATH = "${config.xdg.cacheHome}/nv";
+    _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${config.xdg.configHome}/java";
+  };
+
+  home.sessionPath = [
+    "${home}/.local/bin"
+    "${config.xdg.dataHome}/cargo/bin"
+  ];
 }
