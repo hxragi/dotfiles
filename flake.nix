@@ -64,16 +64,7 @@
     inputs@{
       self,
       nixpkgs,
-      home-manager,
-      catppuccin,
-      sops-nix,
-      niri,
-      ironbar,
-      nur,
-      disko,
       treefmt-nix,
-      helium,
-      obsidian-extensions,
       ...
     }:
     let
@@ -90,47 +81,17 @@
 
       treefmtEval = treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
 
-      shinoa = nixpkgs.lib.nixosSystem {
-        inherit system;
+      mkHost = import ./lib/mkHost.nix { inherit inputs; };
 
-        specialArgs = {
-          inherit inputs;
-        };
-
-        modules = [
-          ./hosts/shinoa
-
-          disko.nixosModules.disko
-          sops-nix.nixosModules.sops
-          home-manager.nixosModules.home-manager
-
-          {
-            nixpkgs.overlays = [
-              niri.overlays.niri
-              nur.overlays.default
-              helium.overlays.default
-              obsidian-extensions.overlays.default
-            ];
-
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              backupFileExtension = "hm-bak";
-
-              extraSpecialArgs = {
-                inherit inputs catppuccin ironbar;
-                fonts = import ./lib/fonts.nix;
-                palette = import ./lib/palette.nix;
-              };
-
-              users.hxragi = import ./home/hxragi;
-            };
-          }
-        ];
+      shinoa = mkHost {
+        host = "shinoa";
+        user = "hxragi";
       };
     in
     {
-      nixosConfigurations.shinoa = shinoa;
+      nixosConfigurations = {
+        inherit shinoa;
+      };
 
       formatter.${system} = treefmtEval.config.build.wrapper;
 
