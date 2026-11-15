@@ -1,15 +1,6 @@
 { fonts, pkgs, ... }: {
   programs.obsidian = {
     enable = true;
-    package = pkgs.symlinkJoin {
-      name = "obsidian-wrapped";
-      paths = [ pkgs.obsidian ];
-      buildInputs = [ pkgs.makeWrapper ];
-      postBuild = ''
-        wrapProgram $out/bin/obsidian \
-          --add-flags "--js-flags=--max-old-space-size=256"
-      '';
-    };
     vaults.notes.target = "documents/vault";
 
     defaultSettings = {
