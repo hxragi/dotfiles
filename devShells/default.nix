@@ -1,4 +1,5 @@
-{ pkgs }: {
+{ pkgs }:
+let
   rust = import ./rust.nix {
     inherit pkgs;
   };
@@ -14,4 +15,24 @@
   solidity = import ./solidity.nix {
     inherit pkgs;
   };
+
+  pantheon = import ./pantheon.nix {
+    inherit
+      pkgs
+      rust
+      java
+      python
+      ;
+  };
+in
+{
+  inherit
+    rust
+    java
+    python
+    solidity
+    pantheon
+    ;
+
+  default = rust;
 }
