@@ -16,6 +16,10 @@ let
     inherit pkgs;
   };
 
+  pentest = import ./pentest.nix {
+    inherit pkgs;
+  };
+
   pantheon = import ./pantheon.nix {
     inherit
       pkgs
@@ -32,6 +36,7 @@ in
     python
     solidity
     pantheon
+    pentest
     ;
 
   default = rust;
