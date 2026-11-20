@@ -17,6 +17,7 @@
     ./fuzzel
     ./git
     ./helium
+    ./horizon.nix
     ./ironbar
     ./just.nix
     ./localsend.nix

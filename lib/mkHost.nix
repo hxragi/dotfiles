@@ -43,6 +43,9 @@ nixpkgs.lib.nixosSystem {
         nur.overlays.default
         helium.overlays.default
         obsidian-extensions.overlays.default
+        (final: _prev: {
+          horizon-launcher = final.callPackage ../packages/horizon-launcher.nix { };
+        })
       ];
 
       home-manager = {
