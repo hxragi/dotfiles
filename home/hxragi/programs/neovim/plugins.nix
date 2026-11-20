@@ -10,6 +10,7 @@
     mini-tabline
     fzf-lua
     nvim-tree-lua
+    conform-nvim
     (nvim-treesitter.withPlugins (
       parsers: with parsers; [
         bash

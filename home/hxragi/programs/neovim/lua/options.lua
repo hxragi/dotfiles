@@ -32,6 +32,7 @@ opt.writebackup = false
 opt.updatetime = 300
 opt.timeoutlen = 500
 opt.fixeol = true
+opt.smoothscroll = true
 opt.mousescroll = "ver:0,hor:0"
 opt.mouse = ""
 
