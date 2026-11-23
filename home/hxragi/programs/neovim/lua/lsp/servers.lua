@@ -159,6 +159,13 @@ vim.api.nvim_create_user_command("JdtlsSync", function()
   vim.cmd("LspRestart jdtls")
 end, { desc = "Sync all Java projects with Bazel dependencies and restart JDTLS" })
 
+vim.api.nvim_create_user_command("JdtlsClean", function()
+  local cache_dir = vim.fn.stdpath("cache") .. "/jdtls/workspace"
+  vim.fn.delete(cache_dir, "rf")
+  vim.notify("JDTLS workspace cache cleared", vim.log.levels.INFO)
+  vim.cmd("LspRestart jdtls")
+end, { desc = "Clear JDTLS workspace cache and restart" })
+
 vim.lsp.config("rust_analyzer", {
   settings = {
     ["rust-analyzer"] = {
