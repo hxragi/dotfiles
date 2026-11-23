@@ -113,7 +113,7 @@ local function ensure_java_ide_files(bufnr)
     return
   end
 
-  local root = vim.fs.root(file, { ".project", "build.gradle", "pom.xml", "BUILD.bazel", "src" })
+  local root = vim.fs.root(file, { ".project", "src", "build.gradle", "pom.xml", "BUILD.bazel" })
   if root then
     generate_ide_files_for_dir(root)
   end
@@ -128,7 +128,9 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.lsp.config("jdtls", {
   root_markers = {
-    { ".project", "build.gradle", "build.gradle.kts", "pom.xml", "BUILD.bazel", "src" },
+    { ".project", "src" },
+    { "build.gradle", "build.gradle.kts", "pom.xml" },
+    { "BUILD.bazel" },
     { "settings.gradle", "settings.gradle.kts", ".git" },
   },
   before_init = function(_, config)
