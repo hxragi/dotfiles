@@ -118,6 +118,10 @@
         );
       };
 
+      packages.${system} = {
+        horizon-launcher = pkgs.callPackage ./packages/horizon-launcher.nix { };
+      };
+
       devShells.${system} = import ./devShells {
         inherit pkgs;
       };
