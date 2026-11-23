@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   programs.neovim.plugins = with pkgs.vimPlugins; [
+    direnv-nvim
     nvim-autopairs
     blink-cmp
     cord-nvim

@@ -22,6 +22,14 @@ vim.lsp.config("forge_lsp", {
   root_markers = { "foundry.toml", ".git" },
 })
 
+vim.lsp.config("jdtls", {
+  root_markers = {
+    { ".project", "build.gradle", "build.gradle.kts", "pom.xml" },
+    { "BUILD.bazel" },
+    { "settings.gradle", "settings.gradle.kts", ".git" },
+  },
+})
+
 vim.lsp.config("rust_analyzer", {
   settings = {
     ["rust-analyzer"] = {
