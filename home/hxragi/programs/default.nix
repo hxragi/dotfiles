@@ -28,6 +28,7 @@
     ./procs.nix
     ./ripgrep.nix
     ./starship
+    ./superseedr.nix
     ./swaylock.nix
     ./telegram.nix
     ./tmux

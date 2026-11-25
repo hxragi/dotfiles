@@ -120,6 +120,7 @@
 
       packages.${system} = {
         horizon-launcher = pkgs.callPackage ./packages/horizon-launcher.nix { };
+        superseedr = pkgs.callPackage ./packages/superseedr.nix { };
       };
 
       devShells.${system} = import ./devShells {
