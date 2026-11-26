@@ -1,29 +1,12 @@
 version: 2
 
 updates:
-  - package-ecosystem: nix
+  - package-ecosystem: github-actions
     directory: "/"
     schedule:
       interval: weekly
       day: monday
     commit-message:
-      prefix: "chore(flake)"
+      prefix: "chore(ci)"
     labels:
       - dependencies
-    groups:
-      nixpkgs-family:
-        patterns:
-          - nixpkgs
-          - home-manager
-          - catppuccin
-          - sops-nix
-          - ironbar
-          - nur
-          - disko
-          - treefmt-nix
-          - helium
-          - obsidian-extensions
-
-      niri:
-        patterns:
-          - niri

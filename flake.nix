@@ -70,7 +70,11 @@
     let
       system = "x86_64-linux";
 
-      pkgs = import nixpkgs {
+      pkgs = nixpkgs.legacyPackages.${system};
+
+      localPkgs = pkgs.extend (import ./overlays);
+
+      devShellsPkgs = import nixpkgs {
         inherit system;
 
         config = {
@@ -119,12 +123,11 @@
       };
 
       packages.${system} = {
-        horizon-launcher = pkgs.callPackage ./packages/horizon-launcher.nix { };
-        superseedr = pkgs.callPackage ./packages/superseedr.nix { };
+        inherit (localPkgs) horizon-launcher superseedr;
       };
 
       devShells.${system} = import ./devShells {
-        inherit pkgs;
+        pkgs = devShellsPkgs;
       };
     };
 }

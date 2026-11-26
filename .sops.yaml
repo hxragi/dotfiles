@@ -1,8 +1,10 @@
 keys:
   - &shinoa age1g8waummp8re4zlwqfhedmjmy0ps4kjsnjl3df8u5jv2kefqut9ls9cg6me
+  - &hxragi age1mrwvlyvwhtr2csev4lzl2xdlhce83s63zgdg0hng9hhv5k0sz5eq85jfnz
 
 creation_rules:
   - path_regex: secrets/.*\.yaml$
     key_groups:
       - age:
           - *shinoa
+          - *hxragi

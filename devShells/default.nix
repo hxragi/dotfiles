@@ -19,15 +19,6 @@ let
   pentest = import ./pentest.nix {
     inherit pkgs;
   };
-
-  pantheon = import ./pantheon.nix {
-    inherit
-      pkgs
-      rust
-      java
-      python
-      ;
-  };
 in
 {
   inherit
@@ -35,7 +26,6 @@ in
     java
     python
     solidity
-    pantheon
     pentest
     ;
 
