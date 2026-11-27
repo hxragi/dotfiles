@@ -1,5 +1,8 @@
 {
   services.thermald.enable = true;
 
-  powerManagement.cpuFreqGovernor = "schedutil";
+  services.tuned = {
+    enable = true;
+    ppdSupport = true;
+  };
 }

@@ -12,7 +12,7 @@
 
       extraGroups = [
         "wheel"
-        "docker"
+        "podman"
       ];
 
       shell = pkgs.fish;

@@ -6,7 +6,10 @@
     init.defaultBranch = "main";
     push.autoSetupRemote = true;
     pull.rebase = true;
+    fetch.prune = true;
+    branch.sort = "-committerdate";
+    rerere.enabled = true;
     diff.algorithm = "histogram";
-    merge.conflictstyle = "diff3";
+    merge.conflictstyle = "zdiff3";
   };
 }

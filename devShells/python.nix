@@ -7,7 +7,7 @@ pkgs.mkShell {
     python
     pkgs.uv
     pkgs.ruff
-    pkgs.basedpyright
+    pkgs.ty
   ];
 
   UV_PYTHON = "${python}/bin/python";

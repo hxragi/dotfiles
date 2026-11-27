@@ -1,6 +1,6 @@
 {
   programs.niri.settings.outputs = {
-    "HDMI-A-2" = {
+    "Xiaomi Corporation Mi Monitor 5833410121393" = {
       mode = {
         width = 1920;
         height = 1080;

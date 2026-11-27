@@ -9,7 +9,7 @@
     grep = "rg";
     find = "fd";
     du = "dust";
-    df = "duf";
+    df = "dysk";
     ps = "procs";
   };
 }

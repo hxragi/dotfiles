@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
   home.packages = [
-    pkgs.libarchive
+    pkgs.ouch
   ];
 }

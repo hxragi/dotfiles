@@ -11,8 +11,7 @@ conform.setup({
     nix = { "nixfmt" },
     sh = { "shfmt" },
     bash = { "shfmt" },
-    markdown = { "prettier" },
-    yaml = { "prettier" },
+    yaml = { "yamlfmt" },
     toml = { "taplo" },
   },
   default_format_opts = {

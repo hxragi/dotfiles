@@ -46,7 +46,6 @@ in
     CARGO_HOME = "${config.xdg.dataHome}/cargo";
     RUSTUP_HOME = "${config.xdg.dataHome}/rustup";
     GOPATH = "${config.xdg.dataHome}/go";
-    DOCKER_CONFIG = "${config.xdg.configHome}/docker";
     NPM_CONFIG_USERCONFIG = "${config.xdg.configHome}/npm/npmrc";
     NODE_REPL_HISTORY = "${config.xdg.stateHome}/node_repl_history";
     CUDA_CACHE_PATH = "${config.xdg.cacheHome}/nv";

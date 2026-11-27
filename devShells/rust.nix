@@ -14,12 +14,15 @@ pkgs.mkShell {
       doCheck = false;
     })
     cargo-nextest
-    lld
+    mold
     rustToolchain
+    sccache
     sqlx-cli
   ];
 
   RUST_BACKTRACE = "1";
+  RUSTFLAGS = "-C link-arg=-fuse-ld=mold";
+  RUSTC_WRAPPER = "${pkgs.sccache}/bin/sccache";
 
   LLVM_COV = "${pkgs.llvmPackages_22.llvm}/bin/llvm-cov";
   LLVM_PROFDATA = "${pkgs.llvmPackages_22.llvm}/bin/llvm-profdata";

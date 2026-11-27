@@ -3,14 +3,15 @@
     ./antigravity.nix
     ./archive.nix
     ./bat.nix
-    ./bluetuith.nix
+    ./bluetui.nix
     ./bottom.nix
     ./comma.nix
     ./delta.nix
     ./direnv.nix
     ./dota2-mod-manager.nix
-    ./duf.nix
+    ./dysk.nix
     ./dust.nix
+    ./equibop
     ./eza.nix
     ./fd.nix
     ./fish
@@ -28,15 +29,14 @@
     ./prismlauncher.nix
     ./procs.nix
     ./ripgrep.nix
+    ./scc.nix
     ./starship
     ./superseedr.nix
     ./swaylock.nix
     ./telegram.nix
-    ./tmux
-    ./tokei.nix
-    ./vesktop
     ./wl-clipboard.nix
     ./xwayland-satellite.nix
+    ./zellij
     ./zoxide.nix
   ];
 }

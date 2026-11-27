@@ -18,6 +18,7 @@ let
     helium
     obsidian-extensions
     ironbar
+    nix-cachyos-kernel
     ;
 in
 nixpkgs.lib.nixosSystem {
@@ -43,6 +44,7 @@ nixpkgs.lib.nixosSystem {
         nur.overlays.default
         helium.overlays.default
         obsidian-extensions.overlays.default
+        nix-cachyos-kernel.overlays.pinned
         (import ../overlays)
       ];
 

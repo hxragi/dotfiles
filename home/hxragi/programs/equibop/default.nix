@@ -1,6 +1,6 @@
 {
   imports = [
+    ./equibop.nix
     ./settings.nix
-    ./vesktop.nix
   ];
 }
