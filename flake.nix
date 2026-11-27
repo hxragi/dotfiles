@@ -58,6 +58,11 @@
       url = "github:jacopone/antigravity-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -76,6 +81,7 @@
 
       devShellsPkgs = import nixpkgs {
         inherit system;
+        overlays = [ inputs.rust-overlay.overlays.default ];
 
         config = {
           allowUnfree = true;

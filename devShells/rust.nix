@@ -1,16 +1,21 @@
 { pkgs }:
+let
+  rustToolchain = pkgs.rust-bin.stable.latest.default.override {
+    extensions = [
+      "llvm-tools"
+      "rust-analyzer"
+      "rust-src"
+    ];
+  };
+in
 pkgs.mkShell {
   packages = with pkgs; [
-    cargo
-    cargo-nextest
     (cargo-llvm-cov.overrideAttrs {
       doCheck = false;
     })
-    clippy
+    cargo-nextest
     lld
-    rust-analyzer
-    rustc
-    rustfmt
+    rustToolchain
     sqlx-cli
   ];
 
