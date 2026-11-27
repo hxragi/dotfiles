@@ -2,7 +2,7 @@
   imports = [
     ./awww.nix
     ./fnott.nix
-    ./swayidle.nix
+    ./hypridle.nix
     ./systemd
   ];
 }
