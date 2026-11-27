@@ -19,7 +19,6 @@
     ./fuzzel
     ./git
     ./helium
-    ./horizon.nix
     ./hyprlock.nix
     ./ironbar
     ./just.nix
