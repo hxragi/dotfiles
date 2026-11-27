@@ -1,7 +1,6 @@
 {
   imports = [
     ./devices.nix
-    ./initrd.nix
     ./journald.nix
     ./services.nix
     ./sockets.nix
