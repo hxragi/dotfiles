@@ -53,7 +53,7 @@
                   name = "gain";
                   label = "mixer";
                   control = {
-                    "Gain 1" = 1.3;
+                    "Gain 1" = 2.2;
                   };
                 }
               ];
