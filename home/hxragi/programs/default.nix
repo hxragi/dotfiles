@@ -8,6 +8,7 @@
     ./comma.nix
     ./delta.nix
     ./direnv.nix
+    ./dota2-mod-manager.nix
     ./duf.nix
     ./dust.nix
     ./eza.nix

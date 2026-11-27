@@ -123,7 +123,7 @@
       };
 
       packages.${system} = {
-        inherit (localPkgs) horizon-launcher superseedr;
+        inherit (localPkgs) dota2-mod-manager horizon-launcher superseedr;
       };
 
       devShells.${system} = import ./devShells {

@@ -7,6 +7,7 @@ pkgs.mkShell {
       doCheck = false;
     })
     clippy
+    lld
     rust-analyzer
     rustc
     rustfmt
