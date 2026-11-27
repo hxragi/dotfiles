@@ -3,7 +3,6 @@
   ...
 }:
 {
-  # Preload af_packet for systemd-networkd DHCP/LLDP before lockKernelModules
   boot.kernelModules = [ "af_packet" ];
 
   networking = {

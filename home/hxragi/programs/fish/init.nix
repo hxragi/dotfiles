@@ -9,7 +9,6 @@
             _tide_finish
         end
 
-        # Minimalist Tide prompt (Catppuccin Mocha)
         set -U tide_left_prompt_items pwd git newline character
         set -U tide_right_prompt_items cmd_duration
 

@@ -37,7 +37,6 @@ in
   };
 
   home.sessionVariables = {
-    # Isolate dotfiles and caches into XDG base directories
     HISTFILE = "${config.xdg.stateHome}/bash/history";
     LESSHISTFILE = "${config.xdg.stateHome}/lesshst";
     INPUTRC = "${config.xdg.configHome}/readline/inputrc";

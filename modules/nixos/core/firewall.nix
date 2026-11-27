@@ -1,5 +1,4 @@
 {
-  # Preload nftables modules before security.lockKernelModules disables module loading
   boot.kernelModules = [
     "nf_tables"
     "nft_ct"

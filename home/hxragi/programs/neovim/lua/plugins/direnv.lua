@@ -9,8 +9,6 @@ direnv.setup({
   },
 })
 
--- Если файл открыт в другом проекте, переключаем cwd через vim.schedule,
--- чтобы не конфликтовать с внутренним процессом загрузки буфера (избегая E201).
 vim.api.nvim_create_autocmd("BufEnter", {
   group = vim.api.nvim_create_augroup("DirenvAutoRoot", { clear = true }),
   callback = function(args)
