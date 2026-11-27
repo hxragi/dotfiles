@@ -1,11 +1,16 @@
 {
-  nix.settings = {
-    experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
+  nix = {
+    daemonCPUSchedPolicy = "idle";
+    daemonIOSchedClass = "idle";
 
-    warn-dirty = false;
-    builders-use-substitutes = true;
+    settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+
+      warn-dirty = false;
+      builders-use-substitutes = true;
+    };
   };
 }

@@ -5,7 +5,7 @@
 }:
 let
   niri = "${config.programs.niri.package}/bin/niri";
-  swaylock = "${pkgs.swaylock}/bin/swaylock -f";
+  hyprlock = "${pkgs.hyprlock}/bin/hyprlock --immediate";
 in
 {
   services.swayidle = {
@@ -14,12 +14,12 @@ in
     timeouts = [
       {
         timeout = 300;
-        command = swaylock;
+        command = hyprlock;
       }
     ];
 
     events = {
-      "before-sleep" = swaylock;
+      "before-sleep" = hyprlock;
       "after-resume" = "${niri} msg action power-on-monitors";
     };
   };

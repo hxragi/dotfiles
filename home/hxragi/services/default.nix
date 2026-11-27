@@ -1,7 +1,7 @@
 {
   imports = [
     ./awww.nix
-    ./mako.nix
+    ./fnott.nix
     ./swayidle.nix
     ./systemd
   ];

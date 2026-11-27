@@ -4,5 +4,7 @@
     yaml-language-server
     nixd
     fzf
+    shfmt
+    selene
   ];
 }

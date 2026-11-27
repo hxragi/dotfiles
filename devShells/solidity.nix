@@ -4,6 +4,5 @@ pkgs.mkShell {
     foundry
     solc
     slither-analyzer
-    vscode-solidity-server
   ];
 }

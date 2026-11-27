@@ -6,8 +6,7 @@
     cord-nvim
     nvim-lspconfig
     mini-statusline
-    noice-nvim
-    nui-nvim
+    fidget-nvim
     mini-tabline
     fzf-lua
     nvim-tree-lua

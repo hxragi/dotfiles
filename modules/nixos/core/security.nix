@@ -6,20 +6,6 @@
   security = {
     protectKernelImage = lib.mkForce true;
     lockKernelModules = lib.mkForce true;
-
-    auditd = {
-      enable = true;
-      settings = {
-        num_logs = 8;
-        max_log_file = 10;
-        max_log_file_action = "ROTATE";
-        space_left = 75;
-        space_left_action = "SYSLOG";
-        admin_space_left = 50;
-        admin_space_left_action = "SUSPEND";
-        disk_full_action = "SUSPEND";
-      };
-    };
   };
 
   boot.kernel.sysctl = {

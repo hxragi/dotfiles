@@ -4,7 +4,7 @@ local servers = {
   "rust_analyzer",
   "jdtls",
   "lua_ls",
-  "basedpyright",
+  "ty",
   "ruff",
   "yamlls",
   "nixd",

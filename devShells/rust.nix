@@ -14,14 +14,15 @@ pkgs.mkShell {
       doCheck = false;
     })
     cargo-nextest
-    mold
+    clang
+    wild
     rustToolchain
     sccache
     sqlx-cli
   ];
 
   RUST_BACKTRACE = "1";
-  RUSTFLAGS = "-C link-arg=-fuse-ld=mold";
+  RUSTFLAGS = "-C linker=${pkgs.clang}/bin/clang -C link-arg=--ld-path=${pkgs.wild}/bin/wild";
   RUSTC_WRAPPER = "${pkgs.sccache}/bin/sccache";
 
   LLVM_COV = "${pkgs.llvmPackages_22.llvm}/bin/llvm-cov";

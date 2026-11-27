@@ -3,8 +3,13 @@
     enable = true;
     enable32Bit = true;
 
-    extraPackages = [
-      pkgs.intel-media-driver
+    extraPackages = with pkgs; [
+      intel-media-driver
+      vpl-gpu-rt
     ];
+  };
+
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "iHD";
   };
 }

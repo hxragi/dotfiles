@@ -21,7 +21,7 @@
                 continue
             end
 
-            bsdtar -xf "$file"
+            ouch decompress "$file"
         end
       '';
     };

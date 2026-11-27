@@ -43,3 +43,4 @@ vim.g.loaded_ruby_provider = 0
 
 vim.diagnostic.config({ virtual_text = true })
 vim.lsp.log.set_level("warn")
+require("vim._core.ui2").enable({})

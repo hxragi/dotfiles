@@ -6,6 +6,7 @@
     ./gamemode.nix
     ./nano.nix
     ./nautilus.nix
+    ./nh.nix
     ./niri.nix
     ./steam.nix
   ];

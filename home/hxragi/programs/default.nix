@@ -20,6 +20,7 @@
     ./git
     ./helium
     ./horizon.nix
+    ./hyprlock.nix
     ./ironbar
     ./just.nix
     ./localsend.nix
@@ -30,9 +31,7 @@
     ./procs.nix
     ./ripgrep.nix
     ./scc.nix
-    ./starship
     ./superseedr.nix
-    ./swaylock.nix
     ./telegram.nix
     ./wl-clipboard.nix
     ./xwayland-satellite.nix

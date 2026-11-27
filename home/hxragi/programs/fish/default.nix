@@ -4,5 +4,6 @@
     ./fish.nix
     ./functions.nix
     ./init.nix
+    ./plugins.nix
   ];
 }
