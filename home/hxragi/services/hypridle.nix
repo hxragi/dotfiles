@@ -5,7 +5,7 @@
 }:
 let
   niri = "${config.programs.niri.package}/bin/niri";
-  hyprlock = "${pkgs.hyprlock}/bin/hyprlock --immediate";
+  hyprlock = "${pkgs.hyprlock}/bin/hyprlock --no-fade-in";
   pidof = "${pkgs.procps}/bin/pidof";
   loginctl = "${pkgs.systemd}/bin/loginctl";
 in
